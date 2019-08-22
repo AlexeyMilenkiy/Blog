@@ -1,0 +1,15 @@
+<a routerLink="/sign-in" class="link-to-sign-up">Sign In</a>
+<form class="body__form" method="post">
+  <h1 class="form__title">Sign up</h1>
+
+  <label for="name" class="form__label">Name</label>
+  <input [(ngModel)]="user.name" type="text" id="name" class="form__input">
+
+  <label for="email" class="form__label">Email</label>
+  <input [(ngModel)]="user.email" type="text" id="email" class="form__input">
+
+  <label for="pass" class="form__label">Password</label>
+  <input [(ngModel)]="user.password" type="password" id="pass" class="form__input">
+
+  <button class="form__submit">Sign up</button>
+</form>
