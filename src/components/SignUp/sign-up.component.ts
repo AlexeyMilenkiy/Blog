@@ -12,5 +12,12 @@ export class SignUpComponent {
     name: '',
     password: '',
     email: ''
+  };
+
+  showUser(e) {
+    e.preventDefault();
+    console.log(this.user);
   }
 }
+
+

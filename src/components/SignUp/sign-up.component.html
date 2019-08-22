@@ -3,13 +3,13 @@
   <h1 class="form__title">Sign up</h1>
 
   <label for="name" class="form__label">Name</label>
-  <input [(ngModel)]="user.name" type="text" id="name" class="form__input">
+  <input [(ngModel)]="user.name" type="text" id="name" class="form__input" name="name">
 
   <label for="email" class="form__label">Email</label>
-  <input [(ngModel)]="user.email" type="text" id="email" class="form__input">
+  <input [(ngModel)]="user.email" type="text" id="email" class="form__input" name="email">
 
   <label for="pass" class="form__label">Password</label>
-  <input [(ngModel)]="user.password" type="password" id="pass" class="form__input">
+  <input [(ngModel)]="user.password" type="password" id="pass" class="form__input" name="password">
 
-  <button class="form__submit">Sign up</button>
+  <button (click)="showUser($event)" class="form__submit">Sign up</button>
 </form>
