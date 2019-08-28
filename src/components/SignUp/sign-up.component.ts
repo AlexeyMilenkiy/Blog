@@ -14,8 +14,7 @@ export class SignUpComponent {
     email: ''
   };
 
-  showUser(e) {
-    e.preventDefault();
+  showUser() {
     console.log(this.user);
   }
 }

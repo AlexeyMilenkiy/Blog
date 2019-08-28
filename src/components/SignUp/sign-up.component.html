@@ -1,4 +1,4 @@
-<a routerLink="/sign-in" class="link-to-sign-up">Sign In</a>
+<a routerLink="/" class="link-to-sign-up">Sign In</a>
 <form class="body__form" method="post">
   <h1 class="form__title">Sign up</h1>
 
@@ -11,5 +11,5 @@
   <label for="pass" class="form__label">Password</label>
   <input [(ngModel)]="user.password" type="password" id="pass" class="form__input" name="password">
 
-  <button (click)="showUser($event)" class="form__submit">Sign up</button>
+  <button (click)="showUser()" class="form__submit">Sign up</button>
 </form>
