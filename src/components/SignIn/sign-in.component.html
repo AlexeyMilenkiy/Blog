@@ -4,21 +4,20 @@
   <h1 class="form__title">Sign in to blog</h1>
 
   <label for="email" class="form__label">Email</label>
-  <input [(ngModel)]="user.email"
-         [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
+  <input [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
          formControlName="email"
          type="email" id="email"
          class="form__input"
          name="email">
 
   <label for="pass" class="form__label">Password</label>
-  <input [(ngModel)]="user.password"
-         [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}"
+  <input [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}"
          formControlName="password"
          type="password"
          id="pass"
          class="form__input"
          name="password">
+
   <button type="submit"
           class="form__submit"
           [ngClass]="{disabled: form.invalid}"

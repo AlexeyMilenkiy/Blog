@@ -30,10 +30,12 @@ export class SignInComponent implements OnInit{
   }
 
   submit() {
-    console.log(this.form);
     if(this.form.invalid){
       return
     }
-
+    this.user = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+    }
   }
 }
