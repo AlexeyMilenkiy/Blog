@@ -34,7 +34,14 @@ export class SignUpComponent implements OnInit{
   }
 
   submit() {
-    console.log(this.form);
+    if(this.form.invalid){
+      return
+    }
+    this.user = {
+      name: this.form.value.name,
+      email: this.form.value.email,
+      password: this.form.value.password,
+    }
   }
 }
 
