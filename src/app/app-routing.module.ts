@@ -4,10 +4,10 @@ import { SignInComponent } from "../components/SignIn/sign-in.component";
 import { SignUpComponent} from "../components/SignUp/sign-up.component";
 import { HomeComponent } from "../components/Home/home.component";
 import { MyPostsComponent } from "../components/MyPosts/my-posts.component";
-import {FriendsPostsComponent} from "../components/FriendsPosts/friends-posts.component";
-import {AddPostComponent} from "../components/AddPost/add-posts.component";
-import {AuthLayoutComponent} from "./shared/auth-layout/auth-layout.component";
-import {MainLayoutComponent} from "./shared/main-layout/main-layout.component";
+import { FriendsPostsComponent } from "../components/FriendsPosts/friends-posts.component";
+import { AddPostComponent } from "../components/AddPost/add-posts.component";
+import { AuthLayoutComponent } from "./shared/auth-layout/auth-layout.component";
+import { MainLayoutComponent } from "./shared/main-layout/main-layout.component";
 
 const routes: Routes = [
   {
