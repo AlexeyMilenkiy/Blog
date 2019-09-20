@@ -10,6 +10,9 @@ import { HomeComponent } from '../components/Home/home.component';
 import { MyPostsComponent } from "../components/MyPosts/my-posts.component";
 import { FriendsPostsComponent } from "../components/FriendsPosts/friends-posts.component";
 import { AddPostComponent } from "../components/AddPost/add-posts.component";
+import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
+import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
+import { SideBarComponent } from '../components/SideBar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { AddPostComponent } from "../components/AddPost/add-posts.component";
     HomeComponent,
     MyPostsComponent,
     FriendsPostsComponent,
-    AddPostComponent
+    AddPostComponent,
+    MainLayoutComponent,
+    AuthLayoutComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,

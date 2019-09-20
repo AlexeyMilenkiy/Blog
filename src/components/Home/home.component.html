@@ -1,40 +1,15 @@
-<div class="body">
-<div class="header">
-  <span class="header__text">Blog</span>
-</div>
-<main class="main">
-  <div class="side-bar">
-    <div class="userName">
-      <a routerLink="/home" class="userName-link">
-        <span class="userName-text"></span>
-      </a>
-    </div>
-    <div class="side-bar__items">
-      <a routerLink="/my-posts" class="side-bar__links">My posts</a>
-    </div>
-    <div class="side-bar__items">
-      <a routerLink="/friends-posts" class="side-bar__links">Friend's posts</a>
-    </div>
-    <div class="side-bar__items">
-      <a routerLink="/add-post" class="side-bar__links">Add Post</a>
-    </div>
-    <div class="side-bar-logout">
-      <button class="logout">Logout</button>
-    </div>
+<div class="home-wrapper">
+  <div class="main-block__search">
+    <input type="text" id="search">
+    <button class="search__btn">Search</button>
   </div>
-  <div class="main-block">
-    <div class="main-block__search">
-      <input type="text" id="search">
-      <button class="search__btn">Search</button>
-    </div>
-    <div class="sort_list">
-      <label for="increase" class="label__checkbox">A-Z</label>
-      <input type="radio" name="filter" id="increase" class="sort_item" value="1" checked>
+  <div class="sort_list">
+    <label for="increase" class="label__checkbox">A-Z</label>
+    <input type="radio" name="filter" id="increase" class="sort_item" value="1" checked>
 
-      <label for="decrease" class="label__checkbox">Z-A</label>
-      <input type="radio" name="filter" id="decrease" class="sort_item" value="0">
-    </div>
-    <div class="main-block__usersList"></div>
+    <label for="decrease" class="label__checkbox">Z-A</label>
+    <input type="radio" name="filter" id="decrease" class="sort_item" value="0">
   </div>
-</main>
+  <div class="main-block__usersList"></div>
 </div>
+
