@@ -45,7 +45,8 @@ export class SignInComponent implements OnInit{
       password: this.form.value.password,
     };
 
-    this.auth.login(this.user).subscribe(() => {
+    this.auth.login(this.user).subscribe((res) => {
+      console.log(res)
       this.form.reset();
       this.router.navigate(['/home'])
     })
