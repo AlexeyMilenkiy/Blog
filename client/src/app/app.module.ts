@@ -14,6 +14,7 @@ import { MainLayoutComponent } from './shared/main-layout/main-layout.component'
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { SideBarComponent } from '../components/SideBar/side-bar.component';
 import { AuthService } from "./shared/services/auth.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AuthService } from "./shared/services/auth.service";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
