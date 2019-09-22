@@ -25,14 +25,14 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    return this.http.post(`http://192.168.8.103:3000/register`, user)
+    return this.http.post(`${environment.baseUrl}register`, user)
       .pipe(
         catchError(this.checkError.bind(this))
       )
   }
 
   login(user: User): Observable<any> {
-    return this.http.post(`http://192.168.8.103:3000/login`, user)
+    return this.http.post(`${environment.baseUrl}login`, user)
       .pipe(
         tap(this.setToken),
         catchError(this.checkError.bind(this))
@@ -40,7 +40,19 @@ export class AuthService {
   }
 
   checkError(error: HttpErrorResponse) {
-    switch(error.error){
+    if(error.error.errors) {
+      switch(error.error.errors[0].param) {
+        case 'name':
+          this.error$.next('Invalid name');
+          break;
+        case 'email':
+          this.error$.next('Invalid email');
+          break;
+        case 'password':
+          this.error$.next('Invalid password');
+      }
+    }
+    switch(error.error) {
       case 'invalid_email':
         this.error$.next('Such an email does not exist');
         break;
