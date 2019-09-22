@@ -6,21 +6,18 @@ const loginUser = (req, res) => {
     let user = req.body;
 
     sequelize.User.findOne({where: {email: user.email}})
-        .then(res => {
-            let isHash = checkHash(user.password, res.password);
-            if (!!isHash) {
-                let activeUser = {name: res.name, id: res.id};
-                console.log(helper.createToken(activeUser))
-                return [activeUser.name, activeUser.id, helper.createToken(activeUser)];
+        .then(data => {
+            if(!data){
+                res.status(400).send('invalid_email')
             } else {
-                return false
-            }
-        })
-        .then((token) => {
-            if(!token){
-             res.sendStatus(400);
-            } else {
-             res.json(token);
+                let isHash = checkHash(user.password, data.password);
+                console.log(isHash);
+                if (!!isHash) {
+                    let activeUser = {name: data.name, id: data.id};
+                    res.json([activeUser.name, activeUser.id, helper.createToken(activeUser)]);
+                } else {
+                    res.status(400).send('invalid_password');
+                }
             }
         })
         .catch(() => {

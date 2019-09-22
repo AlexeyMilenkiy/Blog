@@ -19,7 +19,7 @@ export class SignInComponent implements OnInit{
   form: FormGroup;
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private router: Router
   ) {}
   ngOnInit(): void {
@@ -45,8 +45,7 @@ export class SignInComponent implements OnInit{
       password: this.form.value.password,
     };
 
-    this.auth.login(this.user).subscribe((res) => {
-      console.log(res)
+    this.auth.login(this.user).subscribe(() => {
       this.form.reset();
       this.router.navigate(['/home'])
     })

@@ -1,15 +1,18 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {User} from "../../../interface/user";
-import {Observable} from "rxjs";
+import {Observable, Subject, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {tap} from "rxjs/operators";
+import {catchError, tap} from "rxjs/operators";
 import {AuthResponse} from "../../../interface/auth-response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  public error$: Subject<string> = new Subject<string>()
+
   constructor(private http: HttpClient) {}
 
   get token(): string {
@@ -23,13 +26,31 @@ export class AuthService {
 
   register(user: User): Observable<any> {
     return this.http.post(`${environment.baseUrl}register`, user)
+      .pipe(
+        catchError(this.checkError.bind(this))
+      )
   }
 
   login(user: User): Observable<any> {
     return this.http.post(`${environment.baseUrl}login`, user)
       .pipe(
-        tap(this.setToken)
+        tap(this.setToken),
+        catchError(this.checkError.bind(this))
       )
+  }
+
+  checkError(error: HttpErrorResponse) {
+    switch(error.error){
+      case 'invalid_email':
+        this.error$.next('Such an email does not exist');
+        break;
+      case 'invalid_password':
+        this.error$.next('Wrong password');
+        break;
+      case 'validation_error':
+        this.error$.next('Such email address is registered');
+    }
+    return throwError(error)
   }
 
   logout() {

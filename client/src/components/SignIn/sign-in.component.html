@@ -1,7 +1,7 @@
 <a routerLink="/sign-up" class="link-to-sign-up">Sign Up</a>
-<h1 class="body__title">Hello</h1>
 <form class="body__form" [formGroup]="form" (ngSubmit)="submit()">
-  <h1 class="form__title">Sign in to blog</h1>
+  <h1 class="form__title">Sign in</h1>
+
 
   <label for="email" class="form__label">Email</label>
   <input [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
@@ -22,4 +22,8 @@
           class="form__submit"
           [ngClass]="{disabled: form.invalid}"
           [disabled]="form.invalid">Sign in</button>
+
+  <span class="alert" *ngIf="auth.error$ | async as error">
+    {{error}}
+  </span>
 </form>

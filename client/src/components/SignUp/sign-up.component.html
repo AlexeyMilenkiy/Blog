@@ -32,4 +32,8 @@
           class="form__submit"
           [ngClass]="{disabled: form.invalid}"
           [disabled]="form.invalid">Sign up</button>
+
+  <span class="alert" *ngIf="auth.error$ | async as error">
+    {{error}}
+  </span>
 </form>

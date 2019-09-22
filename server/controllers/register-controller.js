@@ -9,9 +9,8 @@ const registerUser = (req, res) => {
         .then(user => {
             res.json(user);
         })
-        .catch((err) => {
-            console.log(err)
-            res.sendStatus(400);
+        .catch(() => {
+            res.status(400).send('validation_error');
         });
 };
 
