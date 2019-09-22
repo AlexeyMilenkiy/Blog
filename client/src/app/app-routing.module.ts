@@ -12,20 +12,20 @@ import {AuthGuard} from "./shared/services/auth.guard";
 
 const routes: Routes = [
   {
-    path: '', component: AuthLayoutComponent,
+    path: '', component: AuthLayoutComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/', pathMatch: 'full'},
-      { path: '', component: SignInComponent, canActivate: [AuthGuard]},
-      { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard]}
+      { path: '', component: SignInComponent},
+      { path: 'sign-up', component: SignUpComponent}
     ]
   },
   {
-    path: '', component: MainLayoutComponent,
+    path: '', component: MainLayoutComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-      { path: 'my-posts', component: MyPostsComponent, canActivate: [AuthGuard] },
-      { path: 'friends-posts', component: FriendsPostsComponent, canActivate: [AuthGuard] },
-      { path: 'add-post', component: AddPostComponent, canActivate: [AuthGuard] }
+      { path: 'home', component: HomeComponent },
+      { path: 'my-posts', component: MyPostsComponent},
+      { path: 'friends-posts', component: FriendsPostsComponent},
+      { path: 'add-post', component: AddPostComponent}
     ]
   },
 ];
