@@ -25,14 +25,14 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    return this.http.post(`${environment.baseUrl}register`, user)
+    return this.http.post(`http://192.168.8.103:3000/register`, user)
       .pipe(
         catchError(this.checkError.bind(this))
       )
   }
 
   login(user: User): Observable<any> {
-    return this.http.post(`${environment.baseUrl}login`, user)
+    return this.http.post(`http://192.168.8.103:3000/login`, user)
       .pipe(
         tap(this.setToken),
         catchError(this.checkError.bind(this))

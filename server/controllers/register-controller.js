@@ -5,6 +5,7 @@ const registerUser = (req, res) => {
     let user = req.body;
     user.password = createHash(user.password);
 
+    console.log(user);
     sequelize.User.create({ email: user.email, name: user.name, password: user.password })
         .then(user => {
             res.json(user);
