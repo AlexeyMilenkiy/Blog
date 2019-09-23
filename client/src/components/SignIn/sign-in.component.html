@@ -2,7 +2,6 @@
 <form class="body__form" [formGroup]="form" (ngSubmit)="submit()">
   <h1 class="form__title">Sign in</h1>
 
-
   <label for="email" class="form__label">Email</label>
   <input [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
          formControlName="email"

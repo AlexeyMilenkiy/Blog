@@ -8,7 +8,8 @@ const helmet = require('helmet');
 
 const loginRouter = require('./routes/login-router');
 const registerRouter = require('./routes/register-router');
-const getUsersRouter = require('./routes/users-router');
+const usersRouter = require('./routes/users-router');
+const followersRouter = require('./routes/followers-router');
 
 const app = express();
 app.use(cors());
@@ -22,6 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/get-users', getUsersRouter);
-
+app.use('/get-users', usersRouter);
+app.use('/set-subscription/:id', followersRouter);
 module.exports = app;

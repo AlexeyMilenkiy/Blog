@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -13,5 +12,13 @@ export class UsersService {
 
   getUsers(name: string, id: number): Observable<any> {
     return this.http.post(`${environment.baseUrl}get-users`, {name, id})
+  }
+
+  setSubscription(userId: number, followerId: number): Observable<any> {
+    return this.http.post(`${environment.baseUrl}set-subscription`, {userId, followerId})
+  }
+
+  removeSubscription(subscriptionId: number): Observable<any> {
+    return this.http.delete(`${environment.baseUrl}set-subscription/${subscriptionId}`)
   }
 }

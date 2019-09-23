@@ -1,22 +1,25 @@
 <div class="home-wrapper">
-  <div class="main-block__search">
-    <input type="text"
-           id="search"
-           [(ngModel)]="userName"
-           maxlength="50"
-    >
-    <button class="search__btn" (click)="getUsers()">Search</button>
-  </div>
+    <form class="main-block__search" [formGroup]="form" (ngSubmit)="getUsers()">
+      <input type="text"
+             id="search"
+             [ngClass]="{invalid: form.get('name').invalid}"
+             formControlName="name"
+      >
+      <button type="submit"
+              class="search__btn"
+              [disabled]="!form.get('name').value || form.invalid"
+              [ngClass]="{disabled: !form.get('name').value || form.invalid}">Search</button>
+    </form>
   <div class="sort_list">
     <button class="search__btn">Sort</button>
   </div>
   <div class="main-block__usersList">
-    <div class="single-user" *ngFor="let user of users">
-      <span class="search-user">{{user.name}}</span>
+    <div class="single-user" *ngFor="let user of users" >
+      <span class="search-user">{{user.name | titlecase}}</span>
       <img class="img-heart"
            src="assets/images/{{user.follower ? 'heart.png' : 'heart2.png'}}"
            alt="heart"
-           (click)="click(user.id, !!user.follower)">
+           (click)="changeState(user.id, user.follower)">
     </div>
   </div>
 </div>

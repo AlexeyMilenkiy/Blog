@@ -16,7 +16,7 @@ const searchUsers = (req, res) => {
         attributes: { exclude: ['password'] },
         include: [{
             model: sequelize.Followers,
-            attributes: ['following'],
+            attributes: ['id'],
             required: false,
         }],
         })
