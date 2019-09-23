@@ -5,16 +5,16 @@ const { validate } = require('../helpers/validator');
 const { body } = require('express-validator');
 
 
-users.post('/',  controller.searchUsers);
+users.post('/',  validate([
+    body('name')
+        .not().isEmpty()
+        .trim()
+        .isLength({ min: 1, max: 50 }),
+    body('id')
+        .not().isEmpty()
+        .isNumeric()
+]), controller.searchUsers);
 
 module.exports =  users;
 
-// validate([
-//     body('user')
-//         .not().isEmpty()
-//         .trim()
-//         .isLength({ min: 1, max: 50 }),
-//     body('id')
-//         .not().isEmpty()
-//         .isNumeric()
-// ]),
+

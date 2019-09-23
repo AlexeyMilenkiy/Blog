@@ -16,7 +16,20 @@ export class HomeComponent {
     let id = parseInt(localStorage.getItem('id'));
     this.usersService.getUsers(this.userName, id)
       .subscribe(users => {
+        console.log(users);
         this.users = [...users];
     });
+  }
+
+  click(id: number, follow: boolean) {
+    this.users.forEach(item => {
+      if(item.id === id) item.follower =  item.follower ? null : {following: id}
+    });
+
+    if(follow) {
+      //delete follow
+    } else {
+      //add follow
+    }
   }
 }

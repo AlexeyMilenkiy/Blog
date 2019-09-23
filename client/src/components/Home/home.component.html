@@ -8,15 +8,15 @@
     <button class="search__btn" (click)="getUsers()">Search</button>
   </div>
   <div class="sort_list">
-    <label for="increase" class="label__checkbox">A-Z</label>
-    <input type="radio" name="filter" id="increase" class="sort_item" value="1" checked>
-
-    <label for="decrease" class="label__checkbox">Z-A</label>
-    <input type="radio" name="filter" id="decrease" class="sort_item" value="0">
+    <button class="search__btn">Sort</button>
   </div>
   <div class="main-block__usersList">
     <div class="single-user" *ngFor="let user of users">
       <span class="search-user">{{user.name}}</span>
+      <img class="img-heart"
+           src="assets/images/{{user.follower ? 'heart.png' : 'heart2.png'}}"
+           alt="heart"
+           (click)="click(user.id, !!user.follower)">
     </div>
   </div>
 </div>

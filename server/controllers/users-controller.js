@@ -5,7 +5,6 @@ const searchUsers = (req, res) => {
     let activeUserId = req.body.id;
 
     sequelize.User.findAll({
-        attributes: ['id', 'name'],
         where: {
             name: {
                 [sequelize.Op.iLike]: `%${desiredUser}%`,
@@ -13,11 +12,19 @@ const searchUsers = (req, res) => {
             id : {
                 [sequelize.Op.ne]: activeUserId
             },
-        }})
+        },
+        attributes: { exclude: ['password'] },
+        include: [{
+            model: sequelize.Followers,
+            attributes: ['following'],
+            required: false,
+        }],
+        })
         .then(users => {
             res.json(users)
         })
-        .catch(() => {
+        .catch((err) => {
+            console.log(err);
             res.sendStatus(404);
         });
 };
