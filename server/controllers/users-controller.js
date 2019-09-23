@@ -1,7 +1,7 @@
 const sequelize = require('../db/sequelize');
 
 const searchUsers = (req, res) => {
-    let desiredUser = req.body.user;
+    let desiredUser = req.body.name;
     let activeUserId = req.body.id;
 
     sequelize.User.findAll({

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {tap} from "rxjs/operators";
 
@@ -11,10 +11,7 @@ import {tap} from "rxjs/operators";
 export class UsersService {
   constructor(private http: HttpClient) {}
 
-  getUsers(name: string, id: number): Subscription {
-    return this.http.post(`${environment.baseUrl}get-users`, {user: name, id: id})
-      .subscribe( res => {
-        console.log(res);
-      })
+  getUsers(name: string, id: number): Observable<any> {
+    return this.http.post(`${environment.baseUrl}get-users`, {name, id})
   }
 }

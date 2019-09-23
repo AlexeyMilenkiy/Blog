@@ -8,12 +8,15 @@ import {UsersService} from "../../app/shared/services/users.service";
 })
 
 export class HomeComponent {
-  desiredUser: string;
-  constructor(private users: UsersService){}
+  userName: string;
+  users = [];
+  constructor(private usersService: UsersService){}
 
   getUsers() {
     let id = parseInt(localStorage.getItem('id'));
-    console.log(this.desiredUser);
-    this.users.getUsers(this.desiredUser, id);
+    this.usersService.getUsers(this.userName, id)
+      .subscribe(users => {
+        this.users = [...users];
+    });
   }
 }
