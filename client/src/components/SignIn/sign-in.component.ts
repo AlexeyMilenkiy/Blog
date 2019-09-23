@@ -22,6 +22,7 @@ export class SignInComponent implements OnInit{
     public auth: AuthService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
     this.form = new FormGroup({
       email: new FormControl(null, [

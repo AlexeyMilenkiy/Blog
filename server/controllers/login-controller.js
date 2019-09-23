@@ -11,7 +11,6 @@ const loginUser = (req, res) => {
                 res.status(400).send('invalid_email')
             } else {
                 let isHash = checkHash(user.password, data.password);
-                console.log(isHash);
                 if (!!isHash) {
                     let activeUser = {name: data.name, id: data.id};
                     res.json([activeUser.name, activeUser.id, helper.createToken(activeUser)]);

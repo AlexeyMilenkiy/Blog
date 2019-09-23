@@ -6,8 +6,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 
-const loginRouter = require('./routes/login');
-const registerRouter = require('./routes/register');
+const loginRouter = require('./routes/login-router');
+const registerRouter = require('./routes/register-router');
+const getUsersRouter = require('./routes/users-router');
 
 const app = express();
 app.use(cors());
@@ -21,5 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/get-users', getUsersRouter);
 
 module.exports = app;

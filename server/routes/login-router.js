@@ -9,7 +9,7 @@ login.post('/', validate([
     body('email')
         .isEmail()
         .normalizeEmail()
-        .isLength({ max: 50 }),
+        .isLength({ min: 6, max: 50 }),
     body('password')
         .isLength({ min: 6, max: 50})
 ]), controller.loginUser);

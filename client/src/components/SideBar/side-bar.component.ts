@@ -8,6 +8,7 @@ import {AuthService} from "../../app/shared/services/auth.service";
   styleUrls: ['./side-bar.component.less']
 })
 export class SideBarComponent implements OnInit {
+  name: string;
 
   constructor(
     private router: Router,
@@ -15,6 +16,7 @@ export class SideBarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.name = localStorage.getItem('name')
   }
 
   logout() {

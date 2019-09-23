@@ -1,7 +1,11 @@
 <div class="home-wrapper">
   <div class="main-block__search">
-    <input type="text" id="search">
-    <button class="search__btn">Search</button>
+    <input type="text"
+           id="search"
+           [(ngModel)]="desiredUser"
+           maxlength="50"
+    >
+    <button class="search__btn" (click)="getUsers()">Search</button>
   </div>
   <div class="sort_list">
     <label for="increase" class="label__checkbox">A-Z</label>

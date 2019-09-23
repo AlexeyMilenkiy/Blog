@@ -5,12 +5,12 @@ const registerUser = (req, res) => {
     let user = req.body;
     user.password = createHash(user.password);
 
-    sequelize.User.create({ email: user.email, name: user.name, password: user.password })
+    sequelize.User.create({ ...user })
         .then(user => {
             res.json(user);
         })
         .catch(() => {
-            res.status(400).send('validation_error');
+            res.status(400).send('email_registered');
         });
 };
 
