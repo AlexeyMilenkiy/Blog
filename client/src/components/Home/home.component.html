@@ -11,7 +11,9 @@
               [ngClass]="{disabled: !form.get('name').value || form.invalid}">Search</button>
     </form>
   <div class="sort_list">
-    <button class="search__btn">Sort</button>
+    <button class="sort_button"
+            *ngIf="users.length"
+            (click)="sortArray()">Sort</button>
   </div>
   <div class="main-block__usersList">
     <div class="single-user" *ngFor="let user of users" >

@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit{
   users: ResponseUser[] = [];
   form: FormGroup;
   activeUserId = parseInt(localStorage.getItem('id'));
+  increase: boolean = false;
 
   constructor(private usersService: UsersService){}
 
@@ -26,14 +27,23 @@ export class HomeComponent implements OnInit{
     });
   }
 
+  sortArray() {
+    this.increase = !this.increase;
+    if(this.increase){
+      this.users.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+    } else {
+      this.users.sort((a,b) => (a.name > b.name) ? -1 : ((b.name > a.name) ? 0 : -1));
+    }
+  }
+
   getUsers() {
     this.userName = this.form.value.name.trim();
     this.form.reset();
     if(this.userName) {
       this.usersService.getUsers(this.userName, this.activeUserId)
         .subscribe(users => {
-          console.log(users);
           this.users = [...users];
+          this.sortArray();
         });
     }
   }
