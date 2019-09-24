@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit{
     if(this.userName) {
       this.usersService.getUsers(this.userName, this.activeUserId)
         .subscribe(users => {
+          users.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
           this.users = [...users];
-          this.sortArray();
         });
     }
   }
@@ -61,9 +61,7 @@ export class HomeComponent implements OnInit{
         .subscribe(() => {
           this.changeStateInArray(user.id)
         })
-      //delete follow
     } else {
-      //add follow
       this.usersService.setSubscription(this.activeUserId, user.id)
         .subscribe(() => {
           this.changeStateInArray(user.id)
