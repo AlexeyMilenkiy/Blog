@@ -8,7 +8,6 @@ const addPost = (req, res) => {
             res.json(post);
         })
         .catch(err => {
-            console.log(err);
             res.json(err)
         })
 };

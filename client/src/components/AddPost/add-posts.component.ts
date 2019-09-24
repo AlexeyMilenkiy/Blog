@@ -16,7 +16,8 @@ export class AddPostComponent implements OnInit{
     date: '',
     authorId: null
   };
-
+  isModal: boolean = false;
+  isError: boolean = false;
   form: FormGroup;
 
   constructor(private postService: PostService){}
@@ -34,9 +35,13 @@ export class AddPostComponent implements OnInit{
     };
 
     this.postService.addPost(this.post)
-      .subscribe(() => {
+      .subscribe((res) => {
         this.form.reset();
-      })
+        this.isModal = true;
+      },
+      (error) => {
+        if(error) this.isError = true
+    })
   }
 
   ngOnInit(): void {
