@@ -12,4 +12,17 @@ const addPost = (req, res) => {
         })
 };
 
-module.exports = { addPost };
+const getMyPosts = (req, res) => {
+    let userId = req.headers.id;
+    console.log(userId);
+
+    sequelize.Post.findAll({where: {authorId: userId}})
+        .then(posts => {
+            res.json(posts);
+        })
+        .catch(err => {
+            res.json(err)
+        })
+};
+
+module.exports = { addPost, getMyPosts };

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PostService} from "../../app/shared/services/post.service";
+import {Post} from "../../interface/post";
 
 @Component({
   selector: 'my-posts',
@@ -6,9 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-posts.component.less']
 })
 
-export class MyPostsComponent {
+export class MyPostsComponent implements OnInit{
+  posts: Post[] = [];
 
-  showUser () {
+  constructor(private postService: PostService){}
 
+  ngOnInit(): void {
+    let userId = parseInt(localStorage.getItem('id'));
+    this.postService.getMyPosts(userId)
+      .subscribe((posts: Post[]) => {
+        this.posts = [...posts];
+      })
   }
 }

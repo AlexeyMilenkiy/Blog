@@ -21,6 +21,8 @@ posts.post('/',  validate([
         .isNumeric()
 ]), controller.addPost);
 
+posts.get('/', controller.getMyPosts);
+
 module.exports =  posts;
 
 

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Post} from "../../../interface/post";
@@ -31,5 +31,12 @@ export class PostService {
 
   addPost(post: Post): Observable<any> {
     return this.http.post(`${environment.baseUrl}posts`, {...post})
+  }
+
+  getMyPosts(id: number): Observable<any> {
+    return this.http.get(`${environment.baseUrl}posts`,
+      {
+      headers: new HttpHeaders().set('id', `${id}`),
+    })
   }
 }

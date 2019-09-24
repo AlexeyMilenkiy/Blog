@@ -5,8 +5,8 @@ import {PostService} from "../../app/shared/services/post.service";
 
 @Component({
   selector: 'add-post',
-  templateUrl: './add-posts.component.html',
-  styleUrls: ['./add-posts.component.less']
+  templateUrl: './add-post.component.html',
+  styleUrls: ['./add-post.component.less']
 })
 
 export class AddPostComponent implements OnInit{
