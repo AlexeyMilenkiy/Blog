@@ -13,6 +13,7 @@
   <div class="sort_list">
     <button class="sort_button"
             *ngIf="users.length"
+            [ngClass]="isIncrease ? 'up' : 'down'"
             (click)="sortArray()">Sort</button>
   </div>
   <div class="main-block__usersList">

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit{
   users: ResponseUser[] = [];
   form: FormGroup;
   activeUserId = parseInt(localStorage.getItem('id'));
-  increase: boolean = false;
+  isIncrease: boolean = true;
 
   constructor(private usersService: UsersService){}
 
@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit{
   }
 
   sortArray() {
-    this.increase = !this.increase;
-    if(this.increase){
+    this.isIncrease = !this.isIncrease;
+    if(this.isIncrease){
       this.users.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
     } else {
       this.users.sort((a,b) => (a.name > b.name) ? -1 : ((b.name > a.name) ? 0 : -1));
