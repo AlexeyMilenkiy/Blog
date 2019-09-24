@@ -10,6 +10,7 @@ const loginRouter = require('./routes/login-router');
 const registerRouter = require('./routes/register-router');
 const usersRouter = require('./routes/users-router');
 const followersRouter = require('./routes/followers-router');
+const postsRouter = require('./routes/posts-router');
 
 const app = express();
 app.use(cors());
@@ -26,4 +27,6 @@ app.use('/register', registerRouter);
 app.use('/get-users', usersRouter);
 app.use('/set-subscription', followersRouter);
 app.use('/remove-subscription/:id', followersRouter);
+app.use('/posts', postsRouter);
+
 module.exports = app;

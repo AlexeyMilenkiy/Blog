@@ -5,8 +5,16 @@ const sequelize = new Sequelize(...config);
 const Op = Sequelize.Op;
 const User = require('../models/user')(sequelize, Sequelize);
 const Followers = require('../models/followers')(sequelize, Sequelize);
+const Post = require('../models/post')(sequelize, Sequelize);
+
 User.hasOne(Followers,
-    {   foreignKey: 'following',
+    {
+        foreignKey: 'following',
+        onDelete: 'cascade',
+    });
+User.hasMany(Post,
+    {
+        foreignKey: 'authorId',
         onDelete: 'cascade',
     });
 
@@ -22,6 +30,7 @@ sequelize.authenticate()
 module.exports = {
     User,
     Followers,
+    Post,
     Op,
     sequelize,
     Sequelize

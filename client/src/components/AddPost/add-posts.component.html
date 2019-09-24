@@ -1,9 +1,33 @@
 <div class="add-post-wrapper">
     <h3 class="add-post-title">Add new post</h3>
-    <form class="add-post-form">
-      <input type="text" class="post-name" placeholder="Post headline">
-      <textarea class="post-body" placeholder="Post body"></textarea>
-      bldflvdfbldf
-      <button class="add-post">Add</button>
+    <form class="add-post-form" [formGroup]="form" (ngSubmit)="addPost()">
+
+      <input [ngClass]="{invalid: form.get('title').touched && form.get('title').invalid}"
+             formControlName="title"
+             type="text"
+             id="title"
+             class="post-name"
+             name="name">
+      <span class="warning"
+            *ngIf="(form.get('title').touched && form.get('title').errors?.required)"
+            >Please add a title</span>
+      <span class="warning"
+            *ngIf="(form.get('title').errors?.maxlength)"
+            >maximum length 50 characters</span>
+
+      <textarea class="post-body"
+                [ngClass]="{invalid: form.get('text').touched && form.get('text').invalid}"
+                formControlName="text"
+                type="text"
+                id="body"
+                name="text"></textarea>
+      <span class="warning"
+            *ngIf="(form.get('text').touched && form.get('text').errors?.required)"
+            >Please add a text</span>
+
+      <button type="submit"
+              class="add-post"
+              [ngClass]="{disabled: form.invalid}"
+              [disabled]="form.invalid">Add</button>
     </form>
 </div>

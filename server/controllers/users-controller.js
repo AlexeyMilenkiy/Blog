@@ -13,7 +13,7 @@ const searchUsers = (req, res) => {
                 [sequelize.Op.ne]: activeUserId
             },
         },
-        attributes: { exclude: ['password'] },
+        attributes: { exclude: ['password', 'email'] },
         include: [{
             model: sequelize.Followers,
             attributes: ['id'],
