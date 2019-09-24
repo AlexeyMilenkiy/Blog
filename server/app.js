@@ -24,5 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/get-users', usersRouter);
-app.use('/set-subscription/:id', followersRouter);
+app.use('/set-subscription', followersRouter);
+app.use('/remove-subscription/:id', followersRouter);
 module.exports = app;

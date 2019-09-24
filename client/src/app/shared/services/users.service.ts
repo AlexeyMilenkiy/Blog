@@ -8,7 +8,10 @@ import {environment} from "../../../environments/environment";
 })
 
 export class UsersService {
-  constructor(private http: HttpClient) {}
+
+  constructor(
+    private http: HttpClient,
+  ) {}
 
   getUsers(name: string, id: number): Observable<any> {
     return this.http.post(`${environment.baseUrl}get-users`, {name, id})
@@ -19,6 +22,6 @@ export class UsersService {
   }
 
   removeSubscription(subscriptionId: number): Observable<any> {
-    return this.http.delete(`${environment.baseUrl}set-subscription/${subscriptionId}`)
+    return this.http.delete(`${environment.baseUrl}remove-subscription/${subscriptionId}`)
   }
 }

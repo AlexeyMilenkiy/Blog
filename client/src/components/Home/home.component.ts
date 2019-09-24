@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../app/shared/services/users.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ResponseUser} from "../../interface/response-user";
 
 @Component({
   selector: 'home',
@@ -10,10 +11,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 export class HomeComponent implements OnInit{
   userName: string;
-  users = [];
+  users: ResponseUser[] = [];
   form: FormGroup;
   activeUserId = parseInt(localStorage.getItem('id'));
-
 
   constructor(private usersService: UsersService){}
 
@@ -40,23 +40,23 @@ export class HomeComponent implements OnInit{
 
   changeStateInArray(id: number) {
     this.users.forEach(item => {
-      if(item.id === id) item.follower =  item.follower ? null : {following: id}
+      if(item.id === id) item.follower =  item.follower ? null : {id: id}
     });
   }
 
-  changeState(followerId: number, subscription) {
+  changeState(user: ResponseUser) {
 
-    if(subscription) {
-      this.usersService.removeSubscription(subscription.id)
+    if(user.follower) {
+      this.usersService.removeSubscription(user.follower.id)
         .subscribe(() => {
-          this.changeStateInArray(followerId)
+          this.changeStateInArray(user.id)
         })
       //delete follow
     } else {
       //add follow
-      this.usersService.setSubscription(this.activeUserId, followerId)
+      this.usersService.setSubscription(this.activeUserId, user.id)
         .subscribe(() => {
-          this.changeStateInArray(followerId)
+          this.changeStateInArray(user.id)
         })
     }
   }

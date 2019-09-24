@@ -14,17 +14,15 @@ const setSubscription = (req, res) => {
 };
 
 const removeSubscription = (req, res) => {
-    console.log('===================',req)
-    // let userId = req.body.userId;
-    // let followerId = req.body.followerId;
+    let id = req.params.id;
 
-    // sequelize.Followers.create({follower: userId, following: followerId})
-    //     .then(follow => {
-    //         res.json(follow);
-    //     })
-    //     .catch(() => {
-    //         res.sendStatus(400);
-    //     })
+    sequelize.Followers.destroy({where: {id: id}})
+        .then(follow => {
+            res.json(follow);
+        })
+        .catch(() => {
+            res.sendStatus(400);
+        })
 };
 
 module.exports = {setSubscription, removeSubscription};

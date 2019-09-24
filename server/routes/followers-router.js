@@ -1,5 +1,5 @@
 const express = require('express');
-const followers = express.Router();
+const followers = express.Router({ mergeParams : true });
 const controller = require('../controllers/followers-controller');
 const { validate } = require('../helpers/validator');
 const { body } = require('express-validator');
@@ -13,6 +13,6 @@ followers.post('/',  validate([
         .isNumeric()
 ]), controller.setSubscription);
 
-followers.delete('/', controller.setSubscription);
+followers.delete('/', controller.removeSubscription);
 
 module.exports = followers;

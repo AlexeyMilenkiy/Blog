@@ -4,7 +4,6 @@ const controller = require('../controllers/users-controller');
 const { validate } = require('../helpers/validator');
 const { body } = require('express-validator');
 
-
 users.post('/',  validate([
     body('name')
         .not().isEmpty()
