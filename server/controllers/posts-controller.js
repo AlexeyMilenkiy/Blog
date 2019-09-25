@@ -50,7 +50,7 @@ const getMyFriendsPosts = (req, res) => {
 };
 
 const getPosts = (req, res) => {
-    if(req.params.all) {
+    if(req.headers.all) {
         getMyFriendsPosts(req, res);
     } else {
         getMyPosts(req, res);

@@ -39,7 +39,8 @@ export class PostService {
   }
 
   getMyFriendsPosts(id: number): Observable<any> {
-    const headers = new HttpHeaders().set('id', `${id}`);
-    return this.http.get(`${environment.baseUrl}posts/all`, {headers});
+    let headers = new HttpHeaders().set('id', `${id}`);
+    headers = headers.set('all', 'true');
+    return this.http.get(`${environment.baseUrl}posts`, {headers});
   }
 }

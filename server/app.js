@@ -27,6 +27,6 @@ app.use('/register', registerRouter);
 app.use('/get-users', usersRouter);
 app.use('/set-subscription', followersRouter);
 app.use('/remove-subscription/:id', followersRouter);
-app.use('/posts/:all', postsRouter);
+app.use('/posts', postsRouter);
 
 module.exports = app;
