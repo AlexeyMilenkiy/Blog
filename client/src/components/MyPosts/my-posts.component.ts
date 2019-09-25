@@ -12,6 +12,7 @@ export class MyPostsComponent implements OnInit {
   posts: Post[] = [];
   authorName: string = localStorage.getItem('name');
   isError: boolean = false;
+  isEmpty: boolean = false;
 
   constructor(private postService: PostService) {}
 
@@ -19,8 +20,14 @@ export class MyPostsComponent implements OnInit {
     const userId = parseInt(localStorage.getItem('id'));
     this.postService.getMyPosts(userId)
       .subscribe((posts: Post[]) => {
-        this.posts = [...posts];
+        if(this.posts.length) {
+          this.isEmpty = true;
+        } else {
+          this.isEmpty = false;
+          this.posts = [...posts];
+        }
       },
-        error => this.isError = true);
+        error => this.isError = true
+      );
   }
 }

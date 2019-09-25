@@ -1,6 +1,8 @@
 <div class="my-posts-wrapper">
   <h3 class="add-post-title">My posts</h3>
+
   <div class="posts-list">
+    <h3 *ngIf="isEmpty">No posts</h3>
     <div class="single-post" *ngFor="let post of posts">
       <span class="post-headline">{{post.title}}</span>
       <p class="post-text">{{post.text}}</p>
@@ -8,6 +10,7 @@
       <span class="post-date">{{post.date}}</span>
     </div>
   </div>
+
   <div [style.visibility]="isError ?  'visible': 'hidden'"
        [style.opacity]="isError ? '1' : '0'"
        class="modal_wrapper">

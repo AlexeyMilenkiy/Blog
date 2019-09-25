@@ -7,8 +7,8 @@ const addPost = (req, res) => {
         .then(post => {
             res.json(post);
         })
-        .catch(err => {
-            res.json(err)
+        .catch(() => {
+            res.sendStatus(400)
         })
 };
 
@@ -19,8 +19,8 @@ const getMyPosts = (req, res) => {
         .then(posts => {
             res.json(posts);
         })
-        .catch(err => {
-            res.json(err)
+        .catch(() => {
+            res.sendStatus(400)
         })
 };
 
@@ -44,8 +44,8 @@ const getMyFriendsPosts = (req, res) => {
         .then(posts => {
             res.json(posts);
         })
-        .catch(err => {
-            res.json(err)
+        .catch(() => {
+            res.sendStatus(400)
         })
 };
 
