@@ -11,6 +11,7 @@ import {Post} from '../../interface/post';
 export class MyPostsComponent implements OnInit {
   posts: Post[] = [];
   authorName: string = localStorage.getItem('name');
+  isError: boolean = false;
 
   constructor(private postService: PostService) {}
 
@@ -19,6 +20,7 @@ export class MyPostsComponent implements OnInit {
     this.postService.getMyPosts(userId)
       .subscribe((posts: Post[]) => {
         this.posts = [...posts];
-      });
+      },
+        error => this.isError = true);
   }
 }

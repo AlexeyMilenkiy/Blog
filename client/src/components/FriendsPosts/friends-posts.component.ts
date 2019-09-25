@@ -10,6 +10,7 @@ import {PostService} from '../../app/shared/services/post.service';
 
 export class FriendsPostsComponent implements OnInit {
   friendsPosts: Post[] = [];
+  isError: boolean = false;
 
   constructor(private postService: PostService) {}
 
@@ -18,6 +19,7 @@ export class FriendsPostsComponent implements OnInit {
     this.postService.getMyFriendsPosts(userId)
       .subscribe(posts => {
         this.friendsPosts = [...posts];
-      });
+      },
+        (error => this.isError = true));
   }
 }

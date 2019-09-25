@@ -46,3 +46,39 @@
   color: black;
   margin-right: 10px;
 }
+.modal_wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: all 0.8s;
+  background: rgba(0, 0, 0, .8);
+}
+.modal_window {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  color: #333;
+  background: #FFF;
+  border-radius: 10px;
+}
+.modal_text {
+  font-family: Roboto, sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+.close_modal{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 30px;
+  width: 30px;
+  font-size: 1.2em;
+}

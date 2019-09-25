@@ -35,7 +35,7 @@ export class AddPostComponent implements OnInit{
     };
 
     this.postService.addPost(this.post)
-      .subscribe((res) => {
+      .subscribe(() => {
         this.form.reset();
         this.isModal = true;
       },
