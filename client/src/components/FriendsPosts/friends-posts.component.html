@@ -3,6 +3,9 @@
   <div class="sort-wrapper">
   </div>
   <div class="posts-list">
+    <div class="empty-wrapper">
+      <h3 *ngIf="isEmpty" class="empty">No Posts</h3>
+    </div>
     <div class="single-post" *ngFor="let post of friendsPosts">
       <span class="post-headline">{{post.title}}</span>
       <p class="post-text">{{post.title}}</p>

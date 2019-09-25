@@ -1,5 +1,5 @@
 <div class="home-wrapper">
-    <form class="main-block__search" [formGroup]="form" (ngSubmit)="getUsers()">
+  <form class="main-block__search" [formGroup]="form" (ngSubmit)="getUsers()">
       <input type="text"
              id="search"
              [ngClass]="{invalid: form.get('name').invalid}"
@@ -10,9 +10,11 @@
               [disabled]="!form.get('name').value || form.invalid"
               [ngClass]="{disabled: !form.get('name').value || form.invalid}">Search</button>
     </form>
+  <h3 class="empty" *ngIf="isEmpty">No users</h3>
+
   <div class="sort_list">
     <button class="sort_button"
-            *ngIf="users.length"
+            *ngIf="users.length && isSort"
             [ngClass]="isIncrease ? 'up' : 'down'"
             (click)="sortArray()">Sort</button>
   </div>

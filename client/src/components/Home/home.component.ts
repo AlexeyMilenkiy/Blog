@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit{
   form: FormGroup;
   activeUserId = parseInt(localStorage.getItem('id'));
   isIncrease: boolean = true;
+  isEmpty: boolean = false;
+  isSort: boolean = false;
 
   constructor(private usersService: UsersService){}
 
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit{
 
   sortArray() {
     this.isIncrease = !this.isIncrease;
-    if(this.isIncrease){
+    if(this.isIncrease) {
       this.users.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
     } else {
       this.users.sort((a,b) => (a.name > b.name) ? -1 : ((b.name > a.name) ? 0 : -1));
@@ -39,11 +41,18 @@ export class HomeComponent implements OnInit{
   getUsers() {
     this.userName = this.form.value.name.trim();
     this.form.reset();
+    this.users.length = 0;
     if(this.userName) {
       this.usersService.getUsers(this.userName, this.activeUserId)
         .subscribe(users => {
-          users.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-          this.users = [...users];
+          if(users.length){
+            this.isSort = users.length !== 1;
+            this.isEmpty = false;
+            users.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+            this.users = [...users];
+          } else {
+            this.isEmpty = true;
+          }
         });
     }
   }

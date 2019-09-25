@@ -11,6 +11,7 @@ import {PostService} from '../../app/shared/services/post.service';
 export class FriendsPostsComponent implements OnInit {
   friendsPosts: Post[] = [];
   isError: boolean = false;
+  isEmpty: boolean = false;
 
   constructor(private postService: PostService) {}
 
@@ -18,7 +19,12 @@ export class FriendsPostsComponent implements OnInit {
     const userId = parseInt(localStorage.getItem('id'));
     this.postService.getMyFriendsPosts(userId)
       .subscribe(posts => {
-        this.friendsPosts = [...posts];
+        if(posts.length){
+          this.isEmpty = false;
+          this.friendsPosts = [...posts];
+        } else  {
+          this.isEmpty = true;
+          }
       },
         (error => this.isError = true));
   }
