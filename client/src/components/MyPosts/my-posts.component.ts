@@ -21,10 +21,10 @@ export class MyPostsComponent implements OnInit {
     this.postService.getMyPosts(userId)
       .subscribe((posts: Post[]) => {
         if(this.posts.length) {
-          this.isEmpty = true;
-        } else {
           this.isEmpty = false;
           this.posts = [...posts];
+        } else {
+          this.isEmpty = true;
         }
       },
         error => this.isError = true
