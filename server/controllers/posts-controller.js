@@ -14,7 +14,7 @@ const addPost = (req, res) => {
 
 const getMyPosts = (req, res) => {
     let userId = req.headers.id;
-
+    console.log()
     sequelize.Post.findAll({where: {author_id: userId}})
         .then(posts => {
             res.json(posts);

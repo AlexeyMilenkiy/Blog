@@ -20,14 +20,17 @@ export class MyPostsComponent implements OnInit {
     const userId = parseInt(localStorage.getItem('id'));
     this.postService.getMyPosts(userId)
       .subscribe((posts: Post[]) => {
-        if(this.posts.length) {
+        console.log(posts);
+        if(posts.length) {
           this.isEmpty = false;
           this.posts = [...posts];
         } else {
           this.isEmpty = true;
         }
       },
-        error => this.isError = true
+        error => {
+          if(error) this.isError = true
+        }
       );
   }
 }
