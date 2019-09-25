@@ -1,12 +1,14 @@
 <div class="friends-post-wrapper">
   <h3 class="friends-post-title">Friend's posts</h3>
-  <div class="sort_list">
-    <label for="increase" class="label__checkbox">New first</label>
-    <input type="radio" name="sort" id="increase" class="sort_item" value="1" checked>
-
-    <label for="decrease" class="label__checkbox">Old first</label>
-    <input type="radio" name="sort" id="decrease" class="sort_item" value="0">
+  <div class="sort-wrapper">
   </div>
-  <div class="posts-list"></div>
+  <div class="posts-list">
+    <div class="single-post" *ngFor="let post of friendsPosts">
+      <span class="post-headline">{{post.title}}</span>
+      <p class="post-text">{{post.title}}</p>
+      <span class="author-post">{{post.user.name}}</span>
+      <span class="post-date">{{post.date}}</span>
+    </div>
+  </div>
 </div>
 

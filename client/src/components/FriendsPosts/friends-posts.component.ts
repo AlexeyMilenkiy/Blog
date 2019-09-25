@@ -17,7 +17,7 @@ export class FriendsPostsComponent implements OnInit {
     const userId = parseInt(localStorage.getItem('id'));
     this.postService.getMyFriendsPosts(userId)
       .subscribe(posts => {
-        console.log(posts)
+        this.friendsPosts = [...posts];
       });
   }
 }
