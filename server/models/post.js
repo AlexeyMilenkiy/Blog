@@ -24,6 +24,7 @@ module.exports = (sequelize, Sequelize) => {
             },
         },
         {
+            underscored: true,
             tableName: 'posts'
         });
 };

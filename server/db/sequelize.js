@@ -14,7 +14,7 @@ User.hasOne(Followers,
     });
 User.hasMany(Post,
     {
-        foreignKey: 'authorId',
+        foreignKey: 'author_id',
         onDelete: 'cascade',
     });
 

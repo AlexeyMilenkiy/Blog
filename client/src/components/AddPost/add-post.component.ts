@@ -14,7 +14,7 @@ export class AddPostComponent implements OnInit{
     title: '',
     text: '',
     date: '',
-    authorId: null
+    author_id: null
   };
   isModal: boolean = false;
   isError: boolean = false;
@@ -30,7 +30,7 @@ export class AddPostComponent implements OnInit{
     this.post = {
       title: this.form.value.title,
       text: this.form.value.text,
-      authorId: parseInt(localStorage.getItem('id')),
+      author_id: parseInt(localStorage.getItem('id')),
       date: this.postService.getDate()
     };
 
@@ -40,6 +40,7 @@ export class AddPostComponent implements OnInit{
         this.isModal = true;
       },
       (error) => {
+        console.log(error)
         if(error) this.isError = true
     })
   }

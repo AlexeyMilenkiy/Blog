@@ -16,7 +16,7 @@ posts.post('/',  validate([
     body('date')
         .not().isEmpty()
         .trim(),
-    body('authorId')
+    body('author_id')
         .not().isEmpty()
         .isNumeric()
 ]), controller.addPost);
