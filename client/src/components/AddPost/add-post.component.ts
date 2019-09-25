@@ -40,7 +40,6 @@ export class AddPostComponent implements OnInit{
         this.isModal = true;
       },
       (error) => {
-        console.log(error)
         if(error) this.isError = true
     })
   }
