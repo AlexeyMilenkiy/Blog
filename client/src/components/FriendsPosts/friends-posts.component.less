@@ -97,4 +97,27 @@
   font-size: 1.4em;
   font-weight: 700;
 }
-
+.sort_button {
+  border-radius: 5px;
+  height: 40px;
+  width: 90px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  cursor: pointer;
+  outline: none;
+  background: #4169e1;
+  color: white;
+}
+.up {
+  &::after {
+    content: '\2191';
+    margin-left: 10px;
+  }
+}
+.down {
+  &::after {
+    content: '\02193';
+    margin-left: 10px;
+  }
+}
