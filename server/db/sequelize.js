@@ -12,7 +12,13 @@ User.hasOne(Followers,
         foreignKey: 'following',
         onDelete: 'cascade',
     });
-User.hasMany(Post,
+
+User.hasMany(Post, {
+    foreignKey: 'author_id',
+    onDelete: 'cascade',
+});
+
+Post.belongsTo(User,
     {
         foreignKey: 'author_id',
         onDelete: 'cascade',

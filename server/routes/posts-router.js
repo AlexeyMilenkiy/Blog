@@ -1,5 +1,5 @@
 const express = require('express');
-const posts = express.Router();
+const posts = express.Router({ mergeParams : true });
 const controller = require('../controllers/posts-controller');
 const { validate } = require('../helpers/validator');
 const { body } = require('express-validator');
@@ -21,7 +21,7 @@ posts.post('/',  validate([
         .isNumeric()
 ]), controller.addPost);
 
-posts.get('/', controller.getMyPosts);
+posts.get('/', controller.getPosts);
 
 module.exports =  posts;
 

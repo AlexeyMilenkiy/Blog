@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {environment} from "../../../environments/environment";
-import {Post} from "../../../interface/post";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
+import {Post} from '../../../interface/post';
 
-@Injectable ({providedIn: "root"})
+@Injectable ({providedIn: 'root'})
 
 export class PostService {
 
@@ -13,30 +13,33 @@ export class PostService {
   ) {}
 
   getDate() {
-    let date  = new Date();
-    let time = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
+    const date  = new Date();
+    const time = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
       .replace(/\..+/, '').split('T')[1];
     let day: number | string = date.getDate();
-    let month: number | string= date.getMonth() + 1;
+    let month: number | string = date.getMonth() + 1;
     let year: number | string = date.getFullYear();
 
-    if (day < 10) day = '0' + day;
+    if (day < 10) { day = '0' + day; }
 
-    if (month < 10) month = '0' + month;
+    if (month < 10) { month = '0' + month; }
 
-    if (year < 10) year = '0' + year;
+    if (year < 10) { year = '0' + year; }
 
     return `${day}-${month}-${year} ${time}`;
   }
 
   addPost(post: Post): Observable<any> {
-    return this.http.post(`${environment.baseUrl}posts`, {...post})
+    return this.http.post(`${environment.baseUrl}posts`, {...post});
   }
 
   getMyPosts(id: number): Observable<any> {
-    return this.http.get(`${environment.baseUrl}posts`,
-      {
-      headers: new HttpHeaders().set('id', `${id}`),
-    })
+    const headers = new HttpHeaders().set('id', `${id}`);
+    return this.http.get(`${environment.baseUrl}posts`, {headers});
+  }
+
+  getMyFriendsPosts(id: number): Observable<any> {
+    const headers = new HttpHeaders().set('id', `${id}`);
+    return this.http.get(`${environment.baseUrl}posts/all`, {headers});
   }
 }

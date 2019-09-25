@@ -24,4 +24,36 @@ const getMyPosts = (req, res) => {
         })
 };
 
-module.exports = { addPost, getMyPosts };
+const getMyFriendsPosts = (req, res) => {
+    let userId = req.headers.id;
+
+    sequelize.Post.findAll({
+        where: { author_id : {
+            [sequelize.Op.ne]: userId }
+            },
+        include: [{
+            model: sequelize.User,
+            attributes: { exclude: ['password', 'email'] },
+            include: [{
+                model: sequelize.Followers,
+                as: 'follower',
+                attributes: { exclude: ['id'] },
+            }]
+        }]
+    })
+        .then(posts => {
+            res.json(posts);
+        })
+        .catch(err => {
+            res.json(err)
+        })
+};
+
+const getPosts = (req, res) => {
+    if(req.params.all) {
+        getMyFriendsPosts(req, res);
+    } else {
+        getMyPosts(req, res);
+    }
+};
+module.exports = { addPost, getPosts };
