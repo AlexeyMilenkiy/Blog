@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit{
   isIncrease: boolean = true;
   isEmpty: boolean = false;
   isSort: boolean = false;
+  private subscription1: Subscription;
 
   constructor(private usersService: UsersService){}
 
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit{
     this.form.reset();
     this.users.length = 0;
     if(this.userName) {
-      this.usersService.getUsers(this.userName, this.activeUserId)
+      this.subscription1 = this.usersService.getUsers(this.userName, this.activeUserId)
         .subscribe(users => {
           if(users.length){
             this.isSort = users.length !== 1;
