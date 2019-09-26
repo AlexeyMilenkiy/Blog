@@ -29,18 +29,18 @@ export class PostService {
     return `${day}-${month}-${year} ${time}`;
   }
 
-  addPost(post: Post): Observable<any> {
-    return this.http.post(`${environment.baseUrl}posts`, {...post});
+  addPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(`${environment.baseUrl}posts`, {...post});
   }
 
-  getMyPosts(id: number): Observable<any> {
+  getMyPosts(id: number): Observable<Post[]> {
     const headers = new HttpHeaders().set('id', `${id}`);
-    return this.http.get(`${environment.baseUrl}posts`, {headers});
+    return this.http.get<Post[]>(`${environment.baseUrl}posts`, {headers});
   }
 
-  getMyFriendsPosts(id: number): Observable<any> {
+  getMyFriendsPosts(id: number): Observable<Post[]> {
     let headers = new HttpHeaders().set('id', `${id}`);
     headers = headers.set('all', 'true');
-    return this.http.get(`${environment.baseUrl}posts`, {headers});
+    return this.http.get<Post[]>(`${environment.baseUrl}posts`, {headers});
   }
 }

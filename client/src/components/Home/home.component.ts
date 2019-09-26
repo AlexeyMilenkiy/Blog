@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit{
   isIncrease: boolean = true;
   isEmpty: boolean = false;
   isSort: boolean = false;
-  private subscription1: Subscription;
 
   constructor(private usersService: UsersService){}
 
@@ -44,8 +43,9 @@ export class HomeComponent implements OnInit{
     this.form.reset();
     this.users.length = 0;
     if(this.userName) {
-      this.subscription1 = this.usersService.getUsers(this.userName, this.activeUserId)
+      this.usersService.getUsers(this.userName, this.activeUserId)
         .subscribe(users => {
+          console.log(users);
           if(users.length){
             this.isSort = users.length !== 1;
             this.isEmpty = false;
@@ -54,7 +54,8 @@ export class HomeComponent implements OnInit{
           } else {
             this.isEmpty = true;
           }
-        });
+        },
+          (error) => console.log(error));
     }
   }
 
@@ -65,17 +66,17 @@ export class HomeComponent implements OnInit{
   }
 
   changeState(user: ResponseUser) {
-
-    if(user.follower) {
-      this.usersService.removeSubscription(user.follower.id)
-        .subscribe(() => {
-          this.changeStateInArray(user.id)
-        })
-    } else {
-      this.usersService.setSubscription(this.activeUserId, user.id)
-        .subscribe(() => {
-          this.changeStateInArray(user.id)
-        })
-    }
+    console.log(user);
+    // if(user.follower) {
+    //   this.usersService.removeSubscription(user.follower.id)
+    //     .subscribe(() => {
+    //       this.changeStateInArray(user.id)
+    //     })
+    // } else {
+    //   this.usersService.setSubscription(this.activeUserId, user.id)
+    //     .subscribe(() => {
+    //       this.changeStateInArray(user.id)
+    //     })
+    // }
   }
 }
