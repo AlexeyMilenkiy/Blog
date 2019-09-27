@@ -23,8 +23,8 @@ export class UsersService {
   }
 
   removeSubscription(userId: number, followingId: number): Observable<any> {
-    let headers = new HttpHeaders().set('userId', `${userId}`);
-    headers = headers.set('followingId', `${followingId}`);
+    let headers = new HttpHeaders().set('user_id', `${userId}`);
+    headers = headers.set('following_id', `${followingId}`);
     return this.http.delete(`${environment.baseUrl}change-subscription`, {headers});
   }
 }

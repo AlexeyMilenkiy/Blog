@@ -2,7 +2,7 @@ const sequelize = require('../db/sequelize');
 
 const setSubscription = (req, res) => {
     let userId = req.body.userId;
-    let followerId = req.body.followerId;
+    let followerId = req.body.followingId;
 
     sequelize.Followers.create({follower: userId, following: followerId})
         .then(follow => {
@@ -14,13 +14,15 @@ const setSubscription = (req, res) => {
 };
 
 const removeSubscription = (req, res) => {
-    let followerId = req.headers.userId;
-    let followingId = req.headers.followingId;
+    let followerId = req.headers.user_id;
+    let followingId = req.headers.following_id;
+
+    console.log(req.headers);
 
     sequelize.Followers.destroy(
-        {where:
-                {follower: followerId,
-                following: followingId}
+        {where: {
+            follower: followerId,
+            following: followingId}
         })
         .then(follow => {
             res.json(follow);
