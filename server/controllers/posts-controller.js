@@ -53,7 +53,7 @@ const getMyFriendsPosts = (req, res) => {
         .then(posts => {
             res.json(posts);
         })
-        .catch((err) => {
+        .catch(() => {
             res.sendStatus(400)
         })
 };
@@ -65,4 +65,5 @@ const getPosts = (req, res) => {
         getMyPosts(req, res);
     }
 };
+
 module.exports = { addPost, getPosts };

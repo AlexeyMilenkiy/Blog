@@ -30,9 +30,9 @@ export class FriendsPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getMyFriendsPosts(this.activeUserId)
-      .subscribe(posts => {
-        console.log(posts);
-          // if (posts.length) {
+      .subscribe(friends => {
+        console.log(friends);
+          // if (friends.posts.length) {
           //   this.isSort = posts.length !== 1;
           //   this.isEmpty = false;
           //   posts.sort((a, b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));

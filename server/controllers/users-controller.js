@@ -28,5 +28,4 @@ const searchUsers = (req, res) => {
         });
 };
 
-
 module.exports = { searchUsers };
