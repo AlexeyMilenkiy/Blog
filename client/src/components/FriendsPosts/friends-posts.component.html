@@ -11,12 +11,13 @@
     <div *ngIf="isEmpty"  class="empty-wrapper">
       <h3 class="empty">No Posts</h3>
     </div>
-    <div class="single-post" *ngFor="let post of friendsPosts">
-              <span class="post-headline">{{post.title}}</span>
-              <p class="post-text">{{post.text}}</p>
-              <span class="author-post">{{post.name}}</span>
-              <span class="post-date">{{post.date}}</span>
-    </div>
+    <app-post [posts]="friendsPosts"></app-post>
+<!--    <div class="single-post" *ngFor="let post of friendsPosts">-->
+<!--              <span class="post-headline">{{post.title}}</span>-->
+<!--              <p class="post-text">{{post.text}}</p>-->
+<!--              <span class="author-post">{{post.name}}</span>-->
+<!--              <span class="post-date">{{post.date}}</span>-->
+<!--    </div>-->
   </div>
 
   <app-modal [isModal]="isError"

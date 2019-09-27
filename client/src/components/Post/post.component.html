@@ -1,0 +1,8 @@
+ <div class="single-post" *ngFor="let post of posts">
+      <span class="post-headline">{{post.title}}</span>
+      <p class="post-text">{{post.text}}</p>
+      <span class="author-post">{{(post.name || name) | titlecase}}</span>
+      <span class="post-date">{{post.date}}</span>
+ </div>
+
+

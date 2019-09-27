@@ -30,7 +30,6 @@ export class FriendsPostsComponent implements OnInit {
   ngOnInit(): void {
     this.postService.getMyFriendsPosts(this.activeUserId)
       .subscribe((friends: PostResponse[]) => {
-        console.log(friends);
         if (friends.length) {
             friends.forEach(friend => {
               friend.posts.map(post => {
@@ -38,8 +37,10 @@ export class FriendsPostsComponent implements OnInit {
                  this.friendsPosts.push(post);
               });
             });
+            this.isSort = true;
         } else {
             this.isEmpty = true;
+            this.isSort = false;
           }
         },
 () => {
