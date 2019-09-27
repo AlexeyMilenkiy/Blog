@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Post} from '../../../interface/post';
+import {PostResponse} from "../../../interface/post-response";
 
 @Injectable ({providedIn: 'root'})
 
@@ -38,9 +39,9 @@ export class PostService {
     return this.http.get<Post[]>(`${environment.baseUrl}posts`, {headers});
   }
 
-  getMyFriendsPosts(id: number): Observable<Post[]> {
+  getMyFriendsPosts(id: number): Observable<PostResponse[]> {
     let headers = new HttpHeaders().set('id', `${id}`);
     headers = headers.set('all', 'true');
-    return this.http.get<Post[]>(`${environment.baseUrl}posts`, {headers});
+    return this.http.get<PostResponse[]>(`${environment.baseUrl}posts`, {headers});
   }
 }
