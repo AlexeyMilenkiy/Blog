@@ -3,8 +3,7 @@ import { User } from '../../interfaces/user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../app/shared/services/auth.service';
 import {Router} from '@angular/router';
-import {ReplaySubject, Subscription} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'sign-up',
