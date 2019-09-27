@@ -22,10 +22,13 @@
     <div class="single-user" *ngFor="let user of users" >
       <span class="search-user">{{user.name | titlecase}}</span>
       <img class="img-heart"
-           src="assets/images/{{user.follower ? 'heart.png' : 'heart2.png'}}"
+           src="assets/images/{{user.followers ? 'heart.png' : 'heart2.png'}}"
            alt="heart"
            (click)="changeState(user)">
     </div>
   </div>
+    <app-modal [isModal]="isModal"
+               [message]="'Error! Please try Again'"
+               (closed)="isModal = $event"></app-modal>
 </div>
 

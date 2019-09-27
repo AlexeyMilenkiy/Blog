@@ -7,10 +7,11 @@ const User = require('../models/user')(sequelize, Sequelize);
 const Followers = require('../models/followers')(sequelize, Sequelize);
 const Post = require('../models/post')(sequelize, Sequelize);
 
-User.hasMany(Followers,
+User.hasOne(Followers,
     {
-        foreignKey: 'follower',
-        as: 'follower',
+        targetKey: 'id',
+        foreignKey: 'following',
+        as: 'followers',
         onDelete: 'cascade',
     });
 

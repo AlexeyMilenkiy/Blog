@@ -10,15 +10,15 @@ module.exports = (sequelize, Sequelize) => {
             follower: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                references: {
-                    model: sequelize.User,
-                    key: 'id'
-                }
             },
 
             following: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
+                references: {
+                    model: sequelize.User,
+                    key: 'id'
+                }
             }
         },
         {

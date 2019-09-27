@@ -1,9 +1,10 @@
 export interface ResponseUser {
-  name: string,
-  id: number,
-  follower: Follower | null
+  name: string;
+  id: number;
+  followers: Follower | null;
 }
 
 interface Follower {
-  id: number
+  follower: number;
+  id?: number;
 }

@@ -1,19 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignInComponent } from '../components/SignIn/sign-in.component';
 import { SignUpComponent } from '../components/SignUp/sign-up.component';
 import { HomeComponent } from '../components/Home/home.component';
-import { MyPostsComponent } from "../components/MyPosts/my-posts.component";
-import { FriendsPostsComponent } from "../components/FriendsPosts/friends-posts.component";
-import { AddPostComponent } from "../components/AddPost/add-post.component";
+import { MyPostsComponent } from '../components/MyPosts/my-posts.component';
+import { FriendsPostsComponent } from '../components/FriendsPosts/friends-posts.component';
+import { AddPostComponent } from '../components/AddPost/add-post.component';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { SideBarComponent } from '../components/SideBar/side-bar.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
+import {ModalComponent} from '../components/Modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from "@angular/common/http";
     AddPostComponent,
     MainLayoutComponent,
     AuthLayoutComponent,
-    SideBarComponent
+    SideBarComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

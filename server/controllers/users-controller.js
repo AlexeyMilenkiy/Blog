@@ -8,32 +8,18 @@ const searchUsers = (req, res) => {
         attributes: ['name', 'id'],
         include: [ {
             model: sequelize.Followers,
-            as: 'follower',
-            attributes: ['id'],
-        } ],
+            as: 'followers',
+            attributes: ['id','follower'],
+            where: {
+                follower: activeUserId
+            },
+            required: false,
+        }],
         where: {
             name: { [sequelize.Op.iLike]: `%${desiredUser}%` },
             id: { [sequelize.Op.ne]: activeUserId },
         },
-        raw: true,
     })
-
-    // sequelize.User.findAll({
-    //     where: {
-    //         name: {
-    //             [sequelize.Op.iLike]: `%${desiredUser}%`,
-    //         },
-    //         id : {
-    //             [sequelize.Op.ne]: activeUserId
-    //         },
-    //     },
-    //     attributes: { exclude: ['password', 'email'] },
-    //     include: [{
-    //         model: sequelize.Followers,
-    //         attributes: ['id', 'follower', 'following'],
-    //         required: false,
-    //     }],
-    //     })
         .then(users => {
             res.json(users)
         })
