@@ -9,7 +9,7 @@ const searchUsers = (req, res) => {
         include: [ {
             model: sequelize.Followers,
             as: 'followers',
-            attributes: ['id','follower'],
+            attributes: ['follower'],
             where: {
                 follower: activeUserId
             },
@@ -23,8 +23,7 @@ const searchUsers = (req, res) => {
         .then(users => {
             res.json(users)
         })
-        .catch((err) => {
-            console.log(err);
+        .catch(() => {
             res.sendStatus(404);
         });
 };

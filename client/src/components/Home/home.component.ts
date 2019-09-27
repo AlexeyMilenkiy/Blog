@@ -55,9 +55,7 @@ export class HomeComponent implements OnInit {
             this.isEmpty = true;
           }
         },
-          () => {
-            this.isError = true
-        });
+          () => this.isError = true);
     }
   }
 
@@ -69,7 +67,7 @@ export class HomeComponent implements OnInit {
 
   changeState(user: ResponseUser) {
     if (user.followers) {
-      this.usersService.removeSubscription(user.followers.id)
+      this.usersService.removeSubscription(this.activeUserId, user.id)
         .subscribe(() => {
           this.changeStateInArray(user.id);
         });

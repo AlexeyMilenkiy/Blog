@@ -6,5 +6,4 @@ export interface ResponseUser {
 
 interface Follower {
   follower: number;
-  id?: number;
 }

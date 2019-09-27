@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {ResponseUser} from '../../../interface/response-user';
@@ -18,11 +18,13 @@ export class UsersService {
     return this.http.post<ResponseUser[]>(`${environment.baseUrl}get-users`, {name, id});
   }
 
-  setSubscription(userId: number, followerId: number): Observable<ResponseUser[]> {
-    return this.http.post<ResponseUser[]>(`${environment.baseUrl}set-subscription`, {userId, followerId});
+  setSubscription(userId: number, followingId: number): Observable<ResponseUser[]> {
+    return this.http.post<ResponseUser[]>(`${environment.baseUrl}change-subscription`, {userId, followingId});
   }
 
-  removeSubscription(subscriptionId: number): Observable<any> {
-    return this.http.delete(`${environment.baseUrl}delete-subscription/${subscriptionId}`);
+  removeSubscription(userId: number, followingId: number): Observable<any> {
+    let headers = new HttpHeaders().set('userId', `${userId}`);
+    headers = headers.set('followingId', `${followingId}`);
+    return this.http.delete(`${environment.baseUrl}change-subscription`, {headers});
   }
 }

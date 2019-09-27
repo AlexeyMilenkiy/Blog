@@ -14,9 +14,14 @@ const setSubscription = (req, res) => {
 };
 
 const removeSubscription = (req, res) => {
-    let id = req.params.id;
+    let followerId = req.headers.userId;
+    let followingId = req.headers.followingId;
 
-    sequelize.Followers.destroy({where: {id: id}})
+    sequelize.Followers.destroy(
+        {where:
+                {follower: followerId,
+                following: followingId}
+        })
         .then(follow => {
             res.json(follow);
         })

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { User } from '../../interface/user';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../app/shared/services/auth.service";
-import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../app/shared/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'sign-in',
@@ -10,13 +10,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./sign-in.component.less']
 })
 
-export class SignInComponent implements OnInit{
-  user:User = {
+export class SignInComponent implements OnInit {
+  user: User = {
       email: '',
       password: ''
   };
 
   form: FormGroup;
+  isError = false;
 
   constructor(
     public auth: AuthService,
@@ -33,12 +34,12 @@ export class SignInComponent implements OnInit{
         Validators.required,
         Validators.minLength(6)
       ]),
-    })
+    });
   }
 
   submit() {
-    if(this.form.invalid){
-      return
+    if (this.form.invalid) {
+      return;
     }
 
     this.user = {
@@ -48,7 +49,9 @@ export class SignInComponent implements OnInit{
 
     this.auth.login(this.user).subscribe(() => {
       this.form.reset();
-      this.router.navigate(['/home'])
-    })
+      this.router.navigate(['/home']);
+    },
+      () => this.isError = true
+    );
   }
 }
