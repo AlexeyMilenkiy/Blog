@@ -4,6 +4,7 @@
 
       <input [ngClass]="{invalid: form.get('title').touched && form.get('title').invalid}"
              formControlName="title"
+             placeholder="Post title"
              type="text"
              id="title"
              class="post-name"
@@ -16,6 +17,7 @@
             >maximum length 50 characters</span>
 
       <textarea class="post-body"
+                placeholder="Post text"
                 [ngClass]="{invalid: form.get('text').touched && form.get('text').invalid}"
                 formControlName="text"
                 type="text"

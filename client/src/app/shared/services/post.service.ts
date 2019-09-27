@@ -13,7 +13,7 @@ export class PostService {
     private http: HttpClient,
   ) {}
 
-  getDate() {
+  static getDate() {
     const date  = new Date();
     const time = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
       .replace(/\..+/, '').split('T')[1];
@@ -34,9 +34,9 @@ export class PostService {
     return this.http.post<Post>(`${environment.baseUrl}posts`, {...post});
   }
 
-  getMyPosts(id: number): Observable<Post[]> {
+  getMyPosts(id: number): Observable<PostResponse[]> {
     const headers = new HttpHeaders().set('id', `${id}`);
-    return this.http.get<Post[]>(`${environment.baseUrl}posts`, {headers});
+    return this.http.get<PostResponse[]>(`${environment.baseUrl}posts`, {headers});
   }
 
   getMyFriendsPosts(id: number): Observable<PostResponse[]> {

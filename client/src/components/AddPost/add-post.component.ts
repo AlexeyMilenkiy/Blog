@@ -31,7 +31,7 @@ export class AddPostComponent implements OnInit {
       title: this.form.value.title,
       text: this.form.value.text,
       author_id: parseInt(localStorage.getItem('id'), 10),
-      date: this.postService.getDate()
+      date: PostService.getDate()
     };
 
     this.postService.addPost(this.post)
