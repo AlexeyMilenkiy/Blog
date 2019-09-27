@@ -4,12 +4,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignInComponent } from '../components/SignIn/sign-in.component';
-import { SignUpComponent } from '../components/SignUp/sign-up.component';
-import { HomeComponent } from '../components/Home/home.component';
-import { MyPostsComponent } from '../components/MyPosts/my-posts.component';
-import { FriendsPostsComponent } from '../components/FriendsPosts/friends-posts.component';
-import { AddPostComponent } from '../components/AddPost/add-post.component';
+import { SignInComponent } from '../pages/SignIn/sign-in.component';
+import { SignUpComponent } from '../pages/SignUp/sign-up.component';
+import { HomeComponent } from '../pages/Home/home.component';
+import { MyPostsComponent } from '../pages/MyPosts/my-posts.component';
+import { FriendsPostsComponent } from '../pages/FriendsPosts/friends-posts.component';
+import { AddPostComponent } from '../pages/AddPost/add-post.component';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { SideBarComponent } from '../components/SideBar/side-bar.component';
