@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UsersService} from '../../app/shared/services/users.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ResponseUser} from '../../interfaces/response-user';
+import {ReplaySubject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,8 @@ import {ResponseUser} from '../../interfaces/response-user';
   styleUrls: ['./home.component.less']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
   userName: string;
   users: ResponseUser[] = [];
   form: FormGroup;
@@ -45,6 +48,7 @@ export class HomeComponent implements OnInit {
     this.users.length = 0;
     if (this.userName) {
       this.usersService.getUsers(this.userName, this.activeUserId)
+        .pipe(takeUntil(this.destroy))
         .subscribe((users: ResponseUser[]) => {
           if (users.length) {
             this.isSort = users.length !== 1;
@@ -68,14 +72,21 @@ export class HomeComponent implements OnInit {
   changeState(user: ResponseUser) {
     if (user.followers) {
       this.usersService.removeSubscription(this.activeUserId, user.id)
+        .pipe(takeUntil(this.destroy))
         .subscribe(() => {
           this.changeStateInArray(user.id);
         });
     } else {
       this.usersService.setSubscription(this.activeUserId, user.id)
+        .pipe(takeUntil(this.destroy))
         .subscribe(() => {
           this.changeStateInArray(user.id);
         });
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy.next(null);
+    this.destroy.complete();
   }
 }
