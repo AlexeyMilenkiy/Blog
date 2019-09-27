@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Post} from "../../interface/post";
-import {PostService} from "../../app/shared/services/post.service";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Post} from '../../interface/post';
+import {PostService} from '../../app/shared/services/post.service';
 
 @Component({
   selector: 'add-post',
@@ -9,39 +9,39 @@ import {PostService} from "../../app/shared/services/post.service";
   styleUrls: ['./add-post.component.less']
 })
 
-export class AddPostComponent implements OnInit{
+export class AddPostComponent implements OnInit {
   post: Post = {
     title: '',
     text: '',
     date: '',
     author_id: null
   };
-  isModal: boolean = false;
-  isError: boolean = false;
+  isAdded = false;
+  isError = false;
   form: FormGroup;
 
-  constructor(private postService: PostService){}
+  constructor(private postService: PostService) {}
 
   addPost() {
-    if(this.form.invalid){
-      return
+    if (this.form.invalid) {
+      return;
     }
 
     this.post = {
       title: this.form.value.title,
       text: this.form.value.text,
-      author_id: parseInt(localStorage.getItem('id')),
+      author_id: parseInt(localStorage.getItem('id'), 10),
       date: this.postService.getDate()
     };
 
     this.postService.addPost(this.post)
       .subscribe(() => {
         this.form.reset();
-        this.isModal = true;
+        this.isAdded = true;
       },
       (error) => {
-        if(error) this.isError = true
-    })
+        if (error) { this.isError = true; }
+    });
   }
 
   ngOnInit(): void {
@@ -56,6 +56,6 @@ export class AddPostComponent implements OnInit{
         Validators.minLength(1),
         Validators.maxLength(100)
       ]),
-    })
+    });
   }
 }

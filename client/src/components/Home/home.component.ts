@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   isIncrease = true;
   isEmpty = false;
   isSort = false;
-  isModal = false;
+  isError = false;
 
   constructor(private usersService: UsersService) {}
 
@@ -55,8 +55,8 @@ export class HomeComponent implements OnInit {
             this.isEmpty = true;
           }
         },
-          (error) => {
-            this.isModal = true
+          () => {
+            this.isError = true
         });
     }
   }

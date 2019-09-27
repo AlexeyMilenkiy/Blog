@@ -32,22 +32,11 @@
               Add</button>
     </form>
 
-    <div [style.visibility]="isModal ?  'visible': 'hidden'"
-         [style.opacity]="isModal ? '1' : '0'"
-         class="modal_wrapper">
-      <div  class="modal_window">
-        <button class="close_modal" (click)="isModal = false">&#10006;</button>
-        <span class="modal_text">Post added</span>
-      </div>
-    </div>
+    <app-modal [isModal]="isAdded"
+               [message]="'Post added'"
+               (closed)="isAdded = $event"></app-modal>
 
-    <div [style.visibility]="isError ?  'visible': 'hidden'"
-         [style.opacity]="isError ? '1' : '0'"
-         class="modal_wrapper">
-      <div  class="modal_window">
-        <button class="close_modal" (click)="isError = false">&#10006;</button>
-        <span class="modal_text">Error! Try again</span>
-      </div>
-    </div>
-
+    <app-modal [isModal]="isError"
+               [message]="'Error! Please try Again'"
+               (closed)="isError = $event"></app-modal>
 </div>

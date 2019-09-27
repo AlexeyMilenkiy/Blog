@@ -6,7 +6,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./modal.component.less']
 })
 
-
 export class ModalComponent {
   @Input() isModal: boolean;
   @Input() message: string;

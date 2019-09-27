@@ -27,8 +27,8 @@
            (click)="changeState(user)">
     </div>
   </div>
-    <app-modal [isModal]="isModal"
+    <app-modal [isModal]="isError"
                [message]="'Error! Please try Again'"
-               (closed)="isModal = $event"></app-modal>
+               (closed)="isError = $event"></app-modal>
 </div>
 
