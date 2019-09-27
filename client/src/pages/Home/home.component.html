@@ -1,15 +1,21 @@
 <div class="home-wrapper">
   <form class="main-block__search" [formGroup]="form" (ngSubmit)="getUsers()">
+    <div class="input-wrapper">
       <input type="text"
              id="search"
              [ngClass]="{invalid: form.get('name').invalid}"
              formControlName="name"
       >
-      <button type="submit"
-              class="search__btn"
-              [disabled]="!form.get('name').value || form.invalid"
-              [ngClass]="{disabled: !form.get('name').value || form.invalid}">Search</button>
-    </form>
+      <p class="warning"
+            *ngIf="(form.get('name').value && form.invalid)"
+      >maximum name length 30 characters</p>
+    </div>
+    <button type="submit"
+            class="search__btn"
+            [disabled]="!form.get('name').value || form.invalid"
+            [ngClass]="{disabled: !form.get('name').value || form.invalid}">Search</button>
+  </form>
+
   <h3 class="empty" *ngIf="isEmpty">No users</h3>
 
   <div class="sort_list">
