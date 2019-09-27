@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
 
   changeStateInArray(id: number) {
     this.users.forEach(item => {
-      if (item.id === id) { item.followers =  item.followers ? null : {follower: id}; }
+      if (item.id === id) { item.followers =  item.followers ? null : {follower: this.activeUserId}; }
     });
   }
 
