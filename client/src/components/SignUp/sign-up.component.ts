@@ -54,7 +54,11 @@ export class SignUpComponent implements OnInit {
       this.form.reset();
       this.router.navigate(['/']);
     },
-      () => this.isError = true
+      (error) => {
+        if(error.status === 0) {
+          this.isError = true;
+        }
+      }
     );
   }
 }

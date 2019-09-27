@@ -3,6 +3,7 @@ import { User } from '../../interface/user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../app/shared/services/auth.service';
 import {Router} from '@angular/router';
+import {isError} from "util";
 
 @Component({
   selector: 'sign-in',
@@ -51,7 +52,11 @@ export class SignInComponent implements OnInit {
       this.form.reset();
       this.router.navigate(['/home']);
     },
-      () => this.isError = true
+      (error) => {
+        if(error.status === 0) {
+          this.isError = true;
+        }
+      }
     );
   }
 }

@@ -14,7 +14,8 @@ const postsRouter = require('./routes/posts-router');
 const app = express();
 app.use(cors());
 
-app.use(helmet());
+// app.use(helmet());
+// app.disable('x-powered-by');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
