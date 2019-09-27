@@ -4,12 +4,12 @@ import {Post} from '../../interfaces/post';
 
 @Component({
   selector: 'my-posts',
-  templateUrl: './my-posts.page.html',
-  styleUrls: ['./my-posts.page.less']
+  templateUrl: './my-posts.component.html',
+  styleUrls: ['./my-posts.component.less']
 })
 
-export class MyPostsPage implements OnInit {
-  posts: Post[] = [];
+export class MyPostsComponent implements OnInit {
+  posts = [];
   authorName: string = localStorage.getItem('name');
   isError = false;
   isEmpty = false;
@@ -19,7 +19,7 @@ export class MyPostsPage implements OnInit {
   ngOnInit(): void {
     const userId = parseInt(localStorage.getItem('id'), 10);
     this.postService.getMyPosts(userId)
-      .subscribe((posts: Post[]) => {
+      .subscribe((posts) => {
         if (posts.length) {
           this.isEmpty = false;
           this.posts = [...posts];

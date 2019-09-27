@@ -7,11 +7,11 @@ import {isError} from "util";
 
 @Component({
   selector: 'sign-in',
-  templateUrl: './sign-in.page.html',
-  styleUrls: ['./sign-in.page.less']
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.less']
 })
 
-export class SignInPage implements OnInit {
+export class SignInComponent implements OnInit {
   user: User = {
       email: '',
       password: ''

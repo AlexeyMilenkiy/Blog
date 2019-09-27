@@ -5,11 +5,11 @@ import {ResponseUser} from '../../interfaces/response-user';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.less']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.less']
 })
 
-export class HomePage implements OnInit {
+export class HomeComponent implements OnInit {
   userName: string;
   users: ResponseUser[] = [];
   form: FormGroup;
