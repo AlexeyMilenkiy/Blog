@@ -7,4 +7,5 @@ interface Data {
   title: string;
   text: string;
   date: string;
+  name?: string;
 }

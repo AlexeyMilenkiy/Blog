@@ -11,13 +11,11 @@
     <div *ngIf="isEmpty"  class="empty-wrapper">
       <h3 class="empty">No Posts</h3>
     </div>
-    <div *ngFor="let friend of friendsPosts">
-      <div class="single-post" *ngFor="let post of friend.posts">
+    <div class="single-post" *ngFor="let post of friendsPosts">
               <span class="post-headline">{{post.title}}</span>
               <p class="post-text">{{post.text}}</p>
-              <span class="author-post">{{friend.name}}</span>
+              <span class="author-post">{{post.name}}</span>
               <span class="post-date">{{post.date}}</span>
-      </div>
     </div>
   </div>
 
