@@ -3,7 +3,7 @@ import { User } from '../../interfaces/user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../app/shared/services/auth.service';
 import {Router} from '@angular/router';
-import {ReplaySubject} from "rxjs";
+import {ReplaySubject, Subscription} from "rxjs";
 import {takeUntil} from "rxjs/operators";
 
 @Component({
@@ -18,7 +18,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     password: '',
     email: ''
   };
-  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
+  subscriptions: Subscription = new Subscription();
   form: FormGroup;
   isError =  false;
 
@@ -52,8 +52,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       password: this.form.value.password,
     };
 
-    this.auth.register(this.user)
-      .pipe(takeUntil(this.destroy))
+    this.subscriptions.add(this.auth.register(this.user)
       .subscribe(() => {
       this.form.reset();
       this.router.navigate(['/']);
@@ -63,12 +62,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
           this.isError = true;
         }
       }
-    );
+    ));
   }
 
   ngOnDestroy(): void {
-    this.destroy.next(null);
-    this.destroy.complete();
+    this.subscriptions.unsubscribe();
   }
 }
 

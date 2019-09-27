@@ -2,8 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PostService} from '../../app/shared/services/post.service';
 import {PostResponse} from '../../interfaces/post-response';
 import {Post} from '../../interfaces/post';
-import {takeUntil} from "rxjs/operators";
-import {ReplaySubject} from "rxjs";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'friends-posts',
@@ -12,7 +11,7 @@ import {ReplaySubject} from "rxjs";
 })
 
 export class FriendsPostsComponent implements OnInit, OnDestroy {
-  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
+  subscriptions: Subscription = new Subscription();
   friendsPosts: Post[] = [];
   activeUserId = parseInt(localStorage.getItem('id'), 10);
   isError = false;
@@ -31,8 +30,7 @@ export class FriendsPostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.postService.getMyFriendsPosts(this.activeUserId)
-      .pipe(takeUntil(this.destroy))
+    this.subscriptions.add(this.postService.getMyFriendsPosts(this.activeUserId)
       .subscribe((friends: PostResponse[]) => {
         if (friends.length) {
             friends.forEach(friend => {
@@ -50,11 +48,10 @@ export class FriendsPostsComponent implements OnInit, OnDestroy {
 () => {
         this.isEmpty = true;
         this.isError = true;
-      });
+      }));
   }
 
   ngOnDestroy(): void {
-    this.destroy.next(null);
-    this.destroy.complete();
+    this.subscriptions.unsubscribe();
   }
 }

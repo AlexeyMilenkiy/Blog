@@ -2,8 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Post} from '../../interfaces/post';
 import {PostService} from '../../app/shared/services/post.service';
-import {ReplaySubject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'add-post',
@@ -12,7 +11,7 @@ import {takeUntil} from "rxjs/operators";
 })
 
 export class AddPostComponent implements OnInit, OnDestroy {
-  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
+  subscriptions: Subscription = new Subscription();
   post: Post = {
     title: '',
     text: '',
@@ -37,13 +36,13 @@ export class AddPostComponent implements OnInit, OnDestroy {
       date: PostService.getDate()
     };
 
-    this.postService.addPost(this.post)
-      .pipe(takeUntil(this.destroy))
+    this.subscriptions.add(this.postService.addPost(this.post)
       .subscribe(() => {
         this.form.reset();
         this.isAdded = true;
       },
-      () => this.isError = true );
+      () => this.isError = true )
+    )
   }
 
   ngOnInit(): void {
@@ -62,7 +61,6 @@ export class AddPostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroy.next(null);
-    this.destroy.complete();
+    this.subscriptions.unsubscribe();
   }
 }

@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PostService} from '../../app/shared/services/post.service';
 import {Post} from '../../interfaces/post';
-import {ReplaySubject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'my-posts',
@@ -11,18 +10,17 @@ import {takeUntil} from "rxjs/operators";
 })
 
 export class MyPostsComponent implements OnInit, OnDestroy {
-  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
+  subscriptions: Subscription = new Subscription();
   posts: Post[] = [];
   authorName: string = localStorage.getItem('name');
   isError = false;
   isEmpty = false;
+  activeUserId = parseInt(localStorage.getItem('id'), 10);
 
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    const userId = parseInt(localStorage.getItem('id'), 10);
-    this.postService.getMyPosts(userId)
-      .pipe(takeUntil(this.destroy))
+    this.subscriptions.add(this.postService.getMyPosts(this.activeUserId)
       .subscribe((posts: Post[]) => {
         if (posts.length) {
           this.isEmpty = false;
@@ -32,11 +30,10 @@ export class MyPostsComponent implements OnInit, OnDestroy {
         }
       },
         () => this.isError = true
-      );
+      ));
   }
 
   ngOnDestroy(): void {
-    this.destroy.next(null);
-    this.destroy.complete();
+    this.subscriptions.unsubscribe();
   }
 }
