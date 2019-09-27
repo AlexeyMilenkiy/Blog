@@ -19,13 +19,9 @@
             (click)="sortArray()">Sort</button>
   </div>
   <div class="main-block__usersList">
-    <div class="single-user" *ngFor="let user of users" >
-      <span class="search-user">{{user.name | titlecase}}</span>
-      <img class="img-heart"
-           src="assets/images/{{user.followers ? 'heart.png' : 'heart2.png'}}"
-           alt="heart"
-           (click)="changeState(user)">
-    </div>
+
+    <app-user [users]="users" (changed)="changeState($event)"></app-user>
+
   </div>
 
   <app-modal [isModal]="isError"

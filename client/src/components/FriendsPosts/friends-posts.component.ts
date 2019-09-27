@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from '../../app/shared/services/post.service';
-import {PostResponse} from '../../interface/post-response';
-import {Post} from '../../interface/post';
+import {PostResponse} from '../../interfaces/post-response';
+import {Post} from '../../interfaces/post';
 
 @Component({
   selector: 'friends-posts',

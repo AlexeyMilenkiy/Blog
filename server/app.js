@@ -12,8 +12,8 @@ const followersRouter = require('./routes/followers-router');
 const postsRouter = require('./routes/posts-router');
 
 const app = express();
-app.use(cors());
 
+app.use(cors());
 app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());

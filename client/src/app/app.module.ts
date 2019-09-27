@@ -16,6 +16,7 @@ import { SideBarComponent } from '../components/SideBar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ModalComponent} from '../components/Modal/modal.component';
 import {PostComponent} from "../components/Post/post.component";
+import {UserComponent} from "../components/User/user.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {PostComponent} from "../components/Post/post.component";
     AuthLayoutComponent,
     SideBarComponent,
     ModalComponent,
-    PostComponent
+    PostComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

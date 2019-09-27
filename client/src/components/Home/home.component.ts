@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../app/shared/services/users.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ResponseUser} from '../../interface/response-user';
+import {ResponseUser} from '../../interfaces/response-user';
 
 @Component({
   selector: 'app-home',
