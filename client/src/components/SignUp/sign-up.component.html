@@ -36,4 +36,9 @@
   <span class="alert" *ngIf="auth.error$ | async as error">
     {{error}}
   </span>
+
 </form>
+
+<app-modal [isModal]="isError"
+           [message]="'Error! Please try Again'"
+           (closed)="isError = $event"></app-modal>

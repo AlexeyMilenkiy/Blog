@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import { User } from '../../interface/user'
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../app/shared/services/auth.service";
-import {Router} from "@angular/router";
+import { User } from '../../interface/user';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../app/shared/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'sign-up',
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./sign-up.component.less']
 })
 
-export class SignUpComponent implements OnInit{
+export class SignUpComponent implements OnInit {
   user: User  = {
     name: '',
     password: '',
@@ -18,10 +18,11 @@ export class SignUpComponent implements OnInit{
   };
 
   form: FormGroup;
+  isError =  false;
 
   constructor(
     private auth: AuthService,
-    private router: Router){}
+    private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -36,12 +37,12 @@ export class SignUpComponent implements OnInit{
         Validators.required,
         Validators.minLength(6)
       ]),
-    })
+    });
   }
 
   submit() {
-    if(this.form.invalid){
-      return
+    if (this.form.invalid) {
+      return;
     }
     this.user = {
       name: this.form.value.name,
@@ -49,10 +50,12 @@ export class SignUpComponent implements OnInit{
       password: this.form.value.password,
     };
 
-    this.auth.register(this.user).subscribe((res) => {
+    this.auth.register(this.user).subscribe(() => {
       this.form.reset();
-      this.router.navigate(['/'])
-    })
+      this.router.navigate(['/']);
+    },
+      () => this.isError = true
+    );
   }
 }
 
