@@ -14,9 +14,10 @@ import { MainLayoutComponent } from './shared/main-layout/main-layout.component'
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { SideBarComponent } from '../components/SideBar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
-import {ModalComponent} from '../components/Modal/modal.component';
-import {PostComponent} from "../components/Post/post.component";
-import {UserComponent} from "../components/User/user.component";
+import { ModalComponent } from '../components/Modal/modal.component';
+import { PostComponent } from "../components/Post/post.component";
+import { UserComponent } from "../components/User/user.component";
+import { NotFoundComponent } from "../pages/NotFound/not-found.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {UserComponent} from "../components/User/user.component";
     ModalComponent,
     PostComponent,
     UserComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

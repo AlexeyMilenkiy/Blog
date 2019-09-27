@@ -8,7 +8,8 @@ import { FriendsPostsComponent } from "../pages/FriendsPosts/friends-posts.compo
 import { AddPostComponent } from "../pages/AddPost/add-post.component";
 import { AuthLayoutComponent } from "./shared/auth-layout/auth-layout.component";
 import { MainLayoutComponent } from "./shared/main-layout/main-layout.component";
-import {AuthGuard} from "./shared/services/auth.guard";
+import { AuthGuard } from "./shared/services/auth.guard";
+import {NotFoundComponent} from "../pages/NotFound/not-found.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: 'add-post', component: AddPostComponent}
     ]
   },
+  { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
