@@ -24,7 +24,7 @@ const getMyPosts = (req, res) => {
 };
 
 const getMyFriendsPosts = (req, res) => {
-    let userId = req.headers.id;
+    let activeUserId = req.headers.id;
 
     sequelize.User.findAll({
         attributes: ['name'],
@@ -34,7 +34,7 @@ const getMyFriendsPosts = (req, res) => {
                 as: 'followers',
                 attributes: [],
                 where: {
-                    follower: userId
+                    follower: activeUserId
                 },
         },
             {
@@ -43,7 +43,7 @@ const getMyFriendsPosts = (req, res) => {
                 attributes: {exclude : ['id', 'author_id']},
                 where: {
                     author_id: {
-                        [sequelize.Op.ne] : userId
+                        [sequelize.Op.ne] : activeUserId
                     }
                 }
         }],
@@ -58,7 +58,6 @@ const getMyFriendsPosts = (req, res) => {
 };
 
 const getPosts = (req, res) => {
-    console.log(req.headers.all)
     if(req.headers.all) {
         getMyFriendsPosts(req, res);
     } else {
