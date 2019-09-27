@@ -28,7 +28,8 @@ const getMyFriendsPosts = (req, res) => {
 
     sequelize.User.findAll({
         attributes: ['name'],
-        include: [
+        include:
+        [
             {
                 model: sequelize.Followers,
                 as: 'followers',
@@ -36,7 +37,7 @@ const getMyFriendsPosts = (req, res) => {
                 where: {
                     follower: activeUserId
                 },
-        },
+            },
             {
                 model: sequelize.Post,
                 as: 'posts',
@@ -46,13 +47,13 @@ const getMyFriendsPosts = (req, res) => {
                         [sequelize.Op.ne] : activeUserId
                     }
                 }
-        }],
+            }
+        ],
     })
         .then(posts => {
             res.json(posts);
         })
         .catch((err) => {
-            console.log(err);
             res.sendStatus(400)
         })
 };
