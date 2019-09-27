@@ -17,8 +17,6 @@ const removeSubscription = (req, res) => {
     let followerId = req.headers.user_id;
     let followingId = req.headers.following_id;
 
-    console.log(req.headers);
-
     sequelize.Followers.destroy(
         {where: {
             follower: followerId,
