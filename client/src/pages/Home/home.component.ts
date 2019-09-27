@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 
 export class HomeComponent implements OnInit, OnDestroy {
-  subscriptions: Subscription = new Subscription();
+  subscriptions: Subscription= new Subscription();
   userName: string;
   users: ResponseUser[] = [];
   form: FormGroup;
