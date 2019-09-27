@@ -13,14 +13,10 @@
     </div>
   </div>
 
-  <div [style.visibility]="isError ?  'visible': 'hidden'"
-       [style.opacity]="isError ? '1' : '0'"
-       class="modal_wrapper">
-    <div  class="modal_window">
-      <button class="close_modal" (click)="isError = false">&#10006;</button>
-      <span class="modal_text">Error!<br>Please refresh page</span>
-    </div>
-  </div>
+  <app-modal [isModal]="isError"
+             [message]="'Error! Please refresh page'"
+             (closed)="isError = $event"></app-modal>
+
 </div>
 
 
