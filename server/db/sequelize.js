@@ -22,6 +22,11 @@ User.hasMany(Post,
         onDelete: 'cascade',
     });
 
+Post.belongsTo(User,
+    {
+        foreignKey: 'author_id',
+    });
+
 sequelize.sync()
     .then(()=>{ console.log('Databases and tables created!') })
     .catch(err=> console.log(err));

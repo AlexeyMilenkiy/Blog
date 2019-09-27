@@ -39,9 +39,7 @@ export class AddPostComponent implements OnInit {
         this.form.reset();
         this.isAdded = true;
       },
-      (error) => {
-        if (error) { this.isError = true; }
-    });
+      () => this.isError = true );
   }
 
   ngOnInit(): void {
