@@ -4,12 +4,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignInComponent } from '../pages/SignIn/sign-in.component';
-import { SignUpComponent } from '../pages/SignUp/sign-up.component';
-import { HomeComponent } from '../pages/Home/home.component';
-import { MyPostsComponent } from '../pages/MyPosts/my-posts.component';
-import { FriendsPostsComponent } from '../pages/FriendsPosts/friends-posts.component';
-import { AddPostComponent } from '../pages/AddPost/add-post.component';
+import { SignInPage } from '../pages/SignIn/sign-in.page';
+import { SignUpPage } from '../pages/SignUp/sign-up.page';
+import { HomePage } from '../pages/Home/home.page';
+import { MyPostsPage } from '../pages/MyPosts/my-posts.page';
+import { FriendsPostsPage } from '../pages/FriendsPosts/friends-posts.page';
+import { AddPostPage } from '../pages/AddPost/add-post.page';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { SideBarComponent } from '../components/SideBar/side-bar.component';
@@ -21,12 +21,12 @@ import {UserComponent} from "../components/User/user.component";
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent,
-    SignUpComponent,
-    HomeComponent,
-    MyPostsComponent,
-    FriendsPostsComponent,
-    AddPostComponent,
+    SignInPage,
+    SignUpPage,
+    HomePage,
+    MyPostsPage,
+    FriendsPostsPage,
+    AddPostPage,
     MainLayoutComponent,
     AuthLayoutComponent,
     SideBarComponent,

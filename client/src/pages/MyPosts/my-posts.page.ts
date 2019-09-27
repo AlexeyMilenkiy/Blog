@@ -4,11 +4,11 @@ import {Post} from '../../interfaces/post';
 
 @Component({
   selector: 'my-posts',
-  templateUrl: './my-posts.component.html',
-  styleUrls: ['./my-posts.component.less']
+  templateUrl: './my-posts.page.html',
+  styleUrls: ['./my-posts.page.less']
 })
 
-export class MyPostsComponent implements OnInit {
+export class MyPostsPage implements OnInit {
   posts: Post[] = [];
   authorName: string = localStorage.getItem('name');
   isError = false;

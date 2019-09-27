@@ -6,11 +6,11 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.less']
+  templateUrl: './sign-up.page.html',
+  styleUrls: ['./sign-up.page.less']
 })
 
-export class SignUpComponent implements OnInit {
+export class SignUpPage implements OnInit {
   user: User  = {
     name: '',
     password: '',

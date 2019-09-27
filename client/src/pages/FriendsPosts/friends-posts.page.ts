@@ -5,11 +5,11 @@ import {Post} from '../../interfaces/post';
 
 @Component({
   selector: 'friends-posts',
-  templateUrl: './friends-posts.component.html',
-  styleUrls: ['./friends-posts.component.less']
+  templateUrl: './friends-posts.page.html',
+  styleUrls: ['./friends-posts.page.less']
 })
 
-export class FriendsPostsComponent implements OnInit {
+export class FriendsPostsPage implements OnInit {
   friendsPosts: Post[] = [];
   activeUserId = parseInt(localStorage.getItem('id'), 10);
   isError = false;
