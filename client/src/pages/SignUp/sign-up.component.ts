@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { User } from '../../interfaces/user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../app/shared/services/auth.service';
 import {Router} from '@angular/router';
+import {ReplaySubject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'sign-up',
@@ -10,13 +12,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./sign-up.component.less']
 })
 
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
   user: User  = {
     name: '',
     password: '',
     email: ''
   };
-
+  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
   form: FormGroup;
   isError =  false;
 
@@ -50,7 +52,9 @@ export class SignUpComponent implements OnInit {
       password: this.form.value.password,
     };
 
-    this.auth.register(this.user).subscribe(() => {
+    this.auth.register(this.user)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(() => {
       this.form.reset();
       this.router.navigate(['/']);
     },
@@ -60,6 +64,11 @@ export class SignUpComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next(null);
+    this.destroy.complete();
   }
 }
 

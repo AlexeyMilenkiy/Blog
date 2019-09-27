@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Post} from '../../interfaces/post';
 import {PostService} from '../../app/shared/services/post.service';
+import {ReplaySubject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'add-post',
@@ -9,7 +11,8 @@ import {PostService} from '../../app/shared/services/post.service';
   styleUrls: ['./add-post.component.less']
 })
 
-export class AddPostComponent implements OnInit {
+export class AddPostComponent implements OnInit, OnDestroy {
+  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
   post: Post = {
     title: '',
     text: '',
@@ -35,6 +38,7 @@ export class AddPostComponent implements OnInit {
     };
 
     this.postService.addPost(this.post)
+      .pipe(takeUntil(this.destroy))
       .subscribe(() => {
         this.form.reset();
         this.isAdded = true;
@@ -55,5 +59,10 @@ export class AddPostComponent implements OnInit {
         Validators.maxLength(100)
       ]),
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next(null);
+    this.destroy.complete();
   }
 }

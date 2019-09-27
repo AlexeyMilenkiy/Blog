@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PostService} from '../../app/shared/services/post.service';
 import {PostResponse} from '../../interfaces/post-response';
 import {Post} from '../../interfaces/post';
+import {takeUntil} from "rxjs/operators";
+import {ReplaySubject} from "rxjs";
 
 @Component({
   selector: 'friends-posts',
@@ -9,7 +11,8 @@ import {Post} from '../../interfaces/post';
   styleUrls: ['./friends-posts.component.less']
 })
 
-export class FriendsPostsComponent implements OnInit {
+export class FriendsPostsComponent implements OnInit, OnDestroy {
+  destroy: ReplaySubject<any> = new ReplaySubject<any>(1);
   friendsPosts: Post[] = [];
   activeUserId = parseInt(localStorage.getItem('id'), 10);
   isError = false;
@@ -29,6 +32,7 @@ export class FriendsPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getMyFriendsPosts(this.activeUserId)
+      .pipe(takeUntil(this.destroy))
       .subscribe((friends: PostResponse[]) => {
         if (friends.length) {
             friends.forEach(friend => {
@@ -47,5 +51,10 @@ export class FriendsPostsComponent implements OnInit {
         this.isEmpty = true;
         this.isError = true;
       });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next(null);
+    this.destroy.complete();
   }
 }
