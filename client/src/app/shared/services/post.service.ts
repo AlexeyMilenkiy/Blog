@@ -34,9 +34,9 @@ export class PostService {
     return this.http.post<Post>(`${environment.baseUrl}posts`, {...post});
   }
 
-  getMyPosts(id: number): Observable<PostResponse[]> {
+  getMyPosts(id: number): Observable<Post[]> {
     const headers = new HttpHeaders().set('id', `${id}`);
-    return this.http.get<PostResponse[]>(`${environment.baseUrl}posts`, {headers});
+    return this.http.get<Post[]>(`${environment.baseUrl}posts`, {headers});
   }
 
   getMyFriendsPosts(id: number): Observable<PostResponse[]> {

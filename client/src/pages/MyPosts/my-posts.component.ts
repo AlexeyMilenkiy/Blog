@@ -9,7 +9,7 @@ import {Post} from '../../interfaces/post';
 })
 
 export class MyPostsComponent implements OnInit {
-  posts = [];
+  posts: Post[] = [];
   authorName: string = localStorage.getItem('name');
   isError = false;
   isEmpty = false;
@@ -19,7 +19,7 @@ export class MyPostsComponent implements OnInit {
   ngOnInit(): void {
     const userId = parseInt(localStorage.getItem('id'), 10);
     this.postService.getMyPosts(userId)
-      .subscribe((posts) => {
+      .subscribe((posts: Post[]) => {
         if (posts.length) {
           this.isEmpty = false;
           this.posts = [...posts];

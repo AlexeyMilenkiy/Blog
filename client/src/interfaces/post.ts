@@ -4,4 +4,5 @@ export interface Post {
   date: string;
   author_id?: number;
   name?: string;
+  id?: string;
 }
