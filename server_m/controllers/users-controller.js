@@ -1,6 +1,7 @@
 const db = require('../models/index');
 const models = db.models;
-const sequelize = db.sequelize;
+const Sequelize = db.Sequelize;
+const Op = Sequelize.Op;
 
 const searchUsers = (req, res) => {
     let desiredUser = req.body.name;
@@ -9,8 +10,8 @@ const searchUsers = (req, res) => {
     models.User.findAll({
         attributes: ['name', 'id'],
         include: [ {
-            model: sequelize.Followers,
-            as: 'followers',
+            model: models.Follower,
+            as: 'follower',
             attributes: ['follower'],
             where: {
                 follower: activeUserId
@@ -18,14 +19,15 @@ const searchUsers = (req, res) => {
             required: false,
         }],
         where: {
-            name: { [sequelize.Op.iLike]: `%${desiredUser}%` },
-            id: { [sequelize.Op.ne]: activeUserId },
+            name: { [Op.iLike]: `%${desiredUser}%` },
+            id: { [Op.ne]: activeUserId },
         },
     })
         .then(users => {
             res.json(users)
         })
-        .catch(() => {
+        .catch((err) => {
+            console.log(err);
             res.sendStatus(404);
         });
 };

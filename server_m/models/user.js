@@ -6,13 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.hasOne(models.Follower,
-        {
-          targetKey: 'id',
-          foreignKey: 'following',
-          as: 'followers',
-          onDelete: 'cascade',
-        });
+    User.hasOne(models.Follower);
 
     User.hasMany(models.Post,
         {
