@@ -1,7 +1,7 @@
 module.exports = [
-    'social1',      // 'The name of the database'
-    'alexmilenkiy', // 'The username which is used to authenticate against the database'
-    ' ',            // 'The password which is used to authenticate against the database'
+    'database_name',      // 'The name of the database'
+    'user_name', // 'The username which is used to authenticate against the database'
+    'user_password',            // 'The password which is used to authenticate against the database'
     {
         host: 'localhost',
         dialect: 'postgres',
