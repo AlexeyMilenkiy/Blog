@@ -28,13 +28,6 @@ Then you need to set data base configuration in `server/db/config.js` directory.
     'database_name',  // 'The name of the database'
     'user_name',      // 'The username which is used to authenticate against the database'
     'password',       // 'The password which is used to authenticate against the database'
-    {
-        host: 'localhost',
-        dialect: 'postgres',
-        define: {
-            timestamps: false
-        }
-    }
 ```
 
 You only need to create the data base, the tables will be created automatically.
