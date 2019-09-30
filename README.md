@@ -1,7 +1,6 @@
 # Blog
 
 The app is a blog where you can register users, create posts and subscribe to registered users.
-Installation.
 
 ## Getting Started
 You need to download this project to run it locally.
