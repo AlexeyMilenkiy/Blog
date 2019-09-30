@@ -25,6 +25,21 @@ npm install
 ```
 to install dependencies.
 Then you need to set data base configuration in `server/config/config.json` directory. 
+```json
+{
+  "development": {
+    "username": "user name",
+    "password": "****",
+    "database": "database name",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "define": {
+      "timestamps": false
+    }
+  }
+}
+
+```
 You only need to create the data base, the tables will be created automatically.
 
 Next launch the migrations. 
