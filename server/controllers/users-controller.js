@@ -1,29 +1,34 @@
-const sequelize = require('../db/sequelize');
+const db = require('../models/index');
+const models = require('../models');
+const User = models.User;
+const Follower = models.Follower;
+const Sequelize = db.Sequelize;
+const Op = Sequelize.Op;
 
 const searchUsers = (req, res) => {
     let desiredUser = req.body.name;
     let activeUserId = req.body.id;
 
-    sequelize.User.findAll({
+    User.findAll({
         attributes: ['name', 'id'],
         include: [ {
-            model: sequelize.Followers,
-            as: 'followers',
+            model: Follower,
             attributes: ['follower'],
+            as: 'followers',
             where: {
                 follower: activeUserId
             },
             required: false,
         }],
         where: {
-            name: { [sequelize.Op.iLike]: `%${desiredUser}%` },
-            id: { [sequelize.Op.ne]: activeUserId },
+            name: { [Op.iLike]: `%${desiredUser}%` },
+            id: { [Op.ne]: activeUserId },
         },
     })
         .then(users => {
             res.json(users)
         })
-        .catch(() => {
+        .catch((err) => {
             res.sendStatus(404);
         });
 };

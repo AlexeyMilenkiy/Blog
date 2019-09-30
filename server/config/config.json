@@ -1,9 +1,12 @@
 {
   "development": {
-    "username": "alexmilenkiy",
-    "password": ' ',
-    "database": "social1",
+    "username": "postgres",
+    "password": "2323",
+    "database": "migrations2",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres",
+    "define": {
+      "timestamps": false
+    }
   }
 }

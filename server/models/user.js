@@ -1,29 +1,27 @@
-module.exports = (sequelize, Sequelize) => {
-    return sequelize.define('user', {
-            id: {
-                type: Sequelize.INTEGER,
-                primaryKey: true,
-                autoIncrement: true,
-                allowNull: false
-            },
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+      id: {
+          type: DataTypes.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
+      },
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+  }, {
+      underscored: true,
+  });
+  User.associate = function(models) {
+      User.hasOne(models.Follower, {
+          foreignKey: 'following',
+          as: 'followers'
+      });
 
-            name: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-
-            email: {
-                type: Sequelize.STRING,
-                allowNull: false,
-                unique: true
-            },
-
-            password: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-        },
-        {
-            tableName: 'users'
-        });
+      User.hasMany(models.Post, {
+          foreignKey: 'authorId',
+          as: 'posts'
+      });
+  };
+  return User;
 };

@@ -1,11 +1,12 @@
 const createHash = require('../helpers/createHash');
-const sequelize = require('../db/sequelize');
+const models = require('../models');
+const User = models.User;
 
 const registerUser = (req, res) => {
     let user = req.body;
     user.password = createHash(user.password);
 
-    sequelize.User.create({ ...user })
+    User.create({ ...user })
         .then(user => {
             res.json(user);
         })

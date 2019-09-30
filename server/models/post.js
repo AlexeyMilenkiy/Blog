@@ -1,39 +1,15 @@
-module.exports = (sequelize, Sequelize) => {
-    return sequelize.define('post', {
-            id: {
-                type: Sequelize.INTEGER,
-                primaryKey: true,
-                autoIncrement: true,
-                allowNull: false
-            },
-
-            title: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-
-            text: {
-                type: Sequelize.TEXT,
-                allowNull: false,
-                unique: true
-            },
-
-            date: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-
-            author_id: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-                references: {
-                    model: sequelize.User,
-                    key: 'id'
-                }
-            }
-        },
-        {
-            underscored: true,
-            tableName: 'posts'
-        });
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Post = sequelize.define('Post', {
+    title: DataTypes.STRING,
+    text: DataTypes.STRING,
+    date: DataTypes.STRING,
+    author_id: DataTypes.INTEGER,
+  }, {
+    underscored: true,
+  });
+  Post.associate = function(models) {
+    Post.belongsTo(models.User, {foreignKey: 'author_id', as: 'user'})
+  };
+  return Post;
 };
