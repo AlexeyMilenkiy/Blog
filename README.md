@@ -24,7 +24,7 @@ Proceed to `server` directory and execute
 npm install
 ```
 to install dependencies.
-Then you need to set data base configuration in `server/config/config.json` directory. 
+Then you need to set data base configuration in `server/db/config.js` directory. 
 You only need to create the data base, the tables will be created automatically.
 
 Next launch the server.
