@@ -2,17 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Follower = sequelize.define('Follower', {
     follower: DataTypes.INTEGER,
-    following: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
-    },
+    following: DataTypes.INTEGER,
   }, {});
   Follower.associate = function(models) {
-    // associations can be defined here
-    Follower.belongsTo(models.User);
+    Follower.belongsTo(models.User, {foreignKey: 'following'})
   };
   return Follower;
 };

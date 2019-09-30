@@ -39,14 +39,7 @@ sequelize.authenticate()
     .then(() => { console.log('Connection has been established successfully.'); })
     .catch(err => { console.error('Unable to connect to the database:', err); });
 
-const models = {
-  User: sequelize.import('./user'),
-  Follower: sequelize.import('./follower'),
-  Post: sequelize.import('./post'),
-};
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.models = models;
 
 module.exports = db;

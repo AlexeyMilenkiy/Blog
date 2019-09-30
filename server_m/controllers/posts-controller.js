@@ -1,11 +1,14 @@
 const db = require('../models/index');
-const models = db.models;
-const sequelize = db.sequelize;
+const models = require('../models');
+const User = models.User;
+const Post = models.Post;
+const Follower = models.Follower;
+const Op = db.Sequelize.Op;
 
 const addPost = (req, res) => {
     let post = req.body;
 
-    models.Post.create({...post})
+   Post.create({...post})
         .then(post => {
             res.json(post);
         })
@@ -16,7 +19,8 @@ const addPost = (req, res) => {
 
 const getMyPosts = (req, res) => {
     let userId = req.headers.id;
-    models.Post.findAll({where: {author_id: userId}})
+
+    Post.findAll({where: {author_id: userId}})
         .then(posts => {
             res.json(posts);
         })
@@ -28,12 +32,12 @@ const getMyPosts = (req, res) => {
 const getMyFriendsPosts = (req, res) => {
     let activeUserId = req.headers.id;
 
-    models.User.findAll({
+    User.findAll({
         attributes: ['name'],
         include:
         [
             {
-                model: sequelize.Followers,
+                model: Follower,
                 as: 'followers',
                 attributes: [],
                 where: {
@@ -41,12 +45,12 @@ const getMyFriendsPosts = (req, res) => {
                 },
             },
             {
-                model: sequelize.Post,
+                model: Post,
                 as: 'posts',
                 attributes: {exclude : ['id', 'author_id']},
                 where: {
                     author_id: {
-                        [sequelize.Op.ne] : activeUserId
+                        [Op.ne] : activeUserId
                     }
                 }
             }

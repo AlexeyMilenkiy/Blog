@@ -1,33 +1,12 @@
 {
   "development": {
-    "username": "alexmilenkiy",
-    "password": " ",
-    "database": "testdb",
+    "username": "postgres",
+    "password": "2323",
+    "database": "migrations2",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "operatorsAliases": false,
     "define": {
       "timestamps": false
     }
-  },
-  "test": {
-    "username": "alexmilenkiy",
-    "password": " ",
-    "database": "testdb",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "operatorsAliases": false,
-    "define": {
-      "timestamps": false
-    }
-  },
-  "username": "alexmilenkiy",
-  "password": " ",
-  "database": "testdb",
-  "host": "127.0.0.1",
-  "dialect": "postgres",
-  "operatorsAliases": false,
-  "define": {
-    "timestamps": false
   }
 }

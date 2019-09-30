@@ -1,12 +1,12 @@
 const checkHash = require('../helpers/checkHash');
 const helper = require('../helpers/createToken');
-const db = require('../models/index');
-const models = db.models;
+const models = require('../models');
+const User = models.User;
 
 const loginUser = (req, res) => {
     let user = req.body;
 
-    models.User.findOne({where: {email: user.email}})
+    User.findOne({where: {email: user.email}})
         .then(data => {
             if(!data){
                 res.status(400).send('invalid_email')

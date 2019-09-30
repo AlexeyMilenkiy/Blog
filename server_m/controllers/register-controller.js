@@ -1,12 +1,12 @@
 const createHash = require('../helpers/createHash');
-const db = require('../models/index');
-const models = db.models;
+const models = require('../models');
+const User = models.User;
 
 const registerUser = (req, res) => {
     let user = req.body;
     user.password = createHash(user.password);
 
-    models.User.create({ ...user })
+    User.create({ ...user })
         .then(user => {
             res.json(user);
         })
