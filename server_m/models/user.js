@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-  }, {});
+  }, {
+      underscored: true,
+  });
   User.associate = function(models) {
       User.hasOne(models.Follower, {
           foreignKey: 'following',
