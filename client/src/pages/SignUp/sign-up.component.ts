@@ -56,7 +56,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
       this.form.reset();
       this.router.navigate(['/']);
     },
-      () => this.isError = true
+        (error) => {
+          if (error.status !== 401) {
+            this.isError = true;
+          }
+        }
     ));
   }
 

@@ -53,7 +53,11 @@ export class SignInComponent implements OnInit, OnDestroy {
       this.form.reset();
       this.router.navigate(['/home']);
     },
-      () => this.isError = true
+      (error) => {
+        if (error.status !== 401) {
+          this.isError = true;
+        }
+      }
     ));
   }
 

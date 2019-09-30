@@ -10,7 +10,7 @@ const registerUser = (req, res) => {
             res.json(user);
         })
         .catch(() => {
-            res.status(400).send('email_registered');
+            res.status(401).send('email_registered');
         });
 };
 
