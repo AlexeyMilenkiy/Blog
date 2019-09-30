@@ -72,12 +72,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.subscriptions.add(this.usersService.removeSubscription(this.activeUserId, user.id)
         .subscribe(() => {
           this.changeStateInArray(user.id);
-        }));
+        },
+          () => this.isError = true
+        ));
     } else {
       this.subscriptions.add(this.usersService.setSubscription(this.activeUserId, user.id)
         .subscribe(() => {
           this.changeStateInArray(user.id);
-        }));
+        },
+          () => this.isError = true
+        ));
     }
   }
 
