@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "2323",
-    "database": "migrations2",
+    "username": "user name",
+    "password": "****",
+    "database": "database name",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "define": {
