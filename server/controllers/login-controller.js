@@ -9,19 +9,19 @@ const loginUser = (req, res) => {
     User.findOne({where: {email: user.email}})
         .then(data => {
             if(!data){
-                res.status(400).send('invalid_email')
+                res.status(401).send('invalid_email')
             } else {
                 let isHash = checkHash(user.password, data.password);
                 if (!!isHash) {
                     let activeUser = {name: data.name, id: data.id};
                     res.json([activeUser.name, activeUser.id, helper.createToken(activeUser)]);
                 } else {
-                    res.status(400).send('invalid_password');
+                    res.status(401).send('invalid_password');
                 }
             }
         })
         .catch(() => {
-            res.sendStatus(400);
+            res.sendStatus(401);
         });
 };
 
