@@ -13,10 +13,6 @@ module.exports = {
             },
             following: {
                 type: Sequelize.INTEGER,
-                // references: {
-                //     model: 'User',
-                //     key: 'id'
-                // }
             },
         });
     },

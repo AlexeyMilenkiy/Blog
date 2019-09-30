@@ -57,7 +57,6 @@ const getMyFriendsPosts = (req, res) => {
         ],
     })
         .then(posts => {
-            console.log(posts);
             res.json(posts);
         })
         .catch(() => {

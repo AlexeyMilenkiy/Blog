@@ -32,7 +32,6 @@ export class FriendsPostsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.add(this.postService.getMyFriendsPosts(this.activeUserId)
       .subscribe((friends: PostResponse[]) => {
-        console.log(friends);
         if (friends.length) {
             friends.forEach(friend => {
               friend.posts.map(post => {

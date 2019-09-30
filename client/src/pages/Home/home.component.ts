@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.userName) {
       this.subscriptions.add(this.usersService.getUsers(this.userName, this.activeUserId)
         .subscribe((users: ResponseUser[]) => {
-          console.log(users);
           if (users.length) {
             this.isSort = users.length !== 1;
             this.isEmpty = false;
