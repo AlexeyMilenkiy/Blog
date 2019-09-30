@@ -23,10 +23,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(errorHandler);
 
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
-app.use('/get-users', usersRouter);
-app.use('/change-subscription', followersRouter);
-app.use('/posts', postsRouter);
+app.use('/api/v1/login', loginRouter);
+app.use('/api/v1/register', registerRouter);
+app.use('/api/v1/get-users', usersRouter);
+app.use('/api/v1/change-subscription', followersRouter);
+app.use('/api/v1/posts', postsRouter);
 
 module.exports = app;
