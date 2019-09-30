@@ -18,12 +18,11 @@ If you don't have its then just follow the link and install its
 ### Installing 
 
 #### Backend part
-Proceed to `server` directory and execute
+Proceed to `server` directory and execute to install dependencies.
 
 ```
 npm install
 ```
-to install dependencies.
 Then you need to set data base configuration in `server/config/config.json` directory. 
 ```json
 {
